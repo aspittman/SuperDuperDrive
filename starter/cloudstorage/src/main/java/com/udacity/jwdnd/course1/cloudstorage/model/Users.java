@@ -2,32 +2,36 @@ package com.udacity.jwdnd.course1.cloudstorage.model;
 
 public class Users {
 
-    int userId;
-    String userName;
-    String salt;
-    String password;
-    String firstName;
-    String lastName;
+    private Integer userId;
+    private String username;
+    private String salt;
+    private String password;
+    private String firstName;
+    private String lastName;
 
-
-    public Users() {
+    public Users(Integer userId, String username, String salt, String password, String firstName, String lastName) {
+        this.userId = userId;
+        this.username = username;
+        this.salt = salt;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSalt() {
