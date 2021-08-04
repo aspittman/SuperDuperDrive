@@ -27,8 +27,4 @@ public class LoginController {
         return "result";
     }
 
-    @GetMapping("/signup")
-    public String renderSignupPage() {
-        return "signup";
-    }
 }

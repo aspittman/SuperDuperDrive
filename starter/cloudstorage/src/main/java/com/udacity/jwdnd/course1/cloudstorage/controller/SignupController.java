@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class TestController {
+public class SignupController {
 
     @Autowired
     UserMapper userMapper;
 
-    @GetMapping("/greeting")
-    public String greetingForm(Model model) {
+    @GetMapping("/signup")
+    public String renderSignupPage(Model model) {
         model.addAttribute("users", new Users());
-        return "test";
+        return "signup";
     }
 
-    @PostMapping("/greeting")
-    public String greetingSubmit(@ModelAttribute("users") Users users, Model model) {
+    @PostMapping("/signup")
+    public String insertUserSignup(@ModelAttribute("users") Users users, Model model) {
         model.addAttribute("users", users);
-  //      userMapper.insertOne(users);
-        return "test";
+        userMapper.insertUserSignupData(users);
+        return "signup";
     }
 }
