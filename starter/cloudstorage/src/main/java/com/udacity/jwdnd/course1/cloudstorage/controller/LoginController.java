@@ -23,7 +23,8 @@ public class LoginController {
     }
 
     @GetMapping("/result")
-    public String renderResultPage() {
+    public String renderResultPage(@ModelAttribute("users") Users users, Model model) {
+        model.addAttribute("users", users);
         return "result";
     }
 
