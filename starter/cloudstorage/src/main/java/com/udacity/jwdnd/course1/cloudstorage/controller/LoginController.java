@@ -12,14 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class LoginController {
 
-    @GetMapping("/login")
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String renderLoginPage() {
         return "login";
-    }
-
-    @GetMapping("/home")
-    public String renderHomePage() {
-        return "home";
     }
 
     @GetMapping("/result")
