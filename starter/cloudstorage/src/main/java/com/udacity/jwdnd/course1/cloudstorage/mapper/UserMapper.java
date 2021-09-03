@@ -25,4 +25,7 @@ public interface UserMapper {
 
     @Delete("DELETE from USERS WHERE userid=#{userId}")
     int deleteById(long id);
+
+    @Delete("DELETE from USERS(userid,firstname,lastname) VALUES(#{userId},#{firstName},#{lastName})")
+    int deleteALL(Users users);
 }
