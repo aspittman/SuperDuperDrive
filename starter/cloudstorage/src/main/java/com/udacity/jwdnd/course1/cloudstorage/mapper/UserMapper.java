@@ -18,7 +18,7 @@ public interface UserMapper {
     Users findById(long id);
 
     @Insert("INSERT into USERS(firstname,lastname,username,password) VALUES(#{firstName},#{lastName},#{username},#{password})")
-    int insertUserSignupData(Users users);
+    int insertUserData(Users users);
 
     @Insert("INSERT into USERS(userid,firstname,lastname) VALUES(#{userId},#{firstName},#{lastName})")
     int insertTwo(Users users);
@@ -26,6 +26,6 @@ public interface UserMapper {
     @Delete("DELETE from USERS WHERE userid=#{userId}")
     int deleteById(long id);
 
-    @Delete("DELETE from USERS(userid,firstname,lastname) VALUES(#{userId},#{firstName},#{lastName})")
+    @Delete("DELETE from USERS(firstname,lastname,username,password) VALUES(#{firstName},#{lastName},#{username},#{password})")
     int deleteALL(Users users);
 }

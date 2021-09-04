@@ -3,6 +3,7 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageService;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Users;
+import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,18 +20,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class FileUploadController {
 
     private final StorageService storageService;
+    private final UserService userService;
 
     @Autowired
-    public FileUploadController(StorageService storageService) {
+    public FileUploadController(StorageService storageService, UserService userService) {
         this.storageService = storageService;
+        this.userService = userService;
     }
-
-    @Autowired
-    UserMapper userMapper;
 
     @GetMapping("/home")
     public String listUploadedFiles(Model model) {
-        model.addAttribute("files", userMapper.findAll());
+        model.addAttribute("files", userService.displayUserList());
         return "home";
     }
 
@@ -47,7 +47,7 @@ public class FileUploadController {
 
     @DeleteMapping("/home")
     public String deleteFiles(Model model) {
-        model.addAttribute("deleteFiles", userMapper.deleteById(3));
+        model.addAttribute("deleteFiles", userService.deleteUserSignupData(9));
         return "/home";
     }
 
