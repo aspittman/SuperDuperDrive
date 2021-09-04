@@ -45,9 +45,9 @@ public class FileUploadController {
         return "redirect:/home";
     }
 
-    @DeleteMapping("/home")
+    @PostMapping("/home")
     public String deleteFiles(Model model) {
-        model.addAttribute("deleteFiles", userService.deleteUserSignupData(9));
+        model.addAttribute("deleteFiles", userService.deleteUserSignupData(10));
         return "/home";
     }
 
