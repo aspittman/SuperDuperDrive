@@ -14,6 +14,9 @@ public interface UserMapper {
     @Select("SELECT * from USERS")
     List<Users> findAll();
 
+    @Select("SELECT userid from USERS")
+    List<Users> getUserId();
+
     @Select("SELECT * from USERS WHERE userid=#{userId}")
     Users findById(long id);
 
@@ -26,6 +29,4 @@ public interface UserMapper {
     @Delete("DELETE from USERS WHERE userid=#{userId}")
     int deleteById(long id);
 
-    @Delete("DELETE from USERS(firstname,lastname,username,password) VALUES(#{firstName},#{lastName},#{username},#{password})")
-    int deleteALL(Users users);
 }

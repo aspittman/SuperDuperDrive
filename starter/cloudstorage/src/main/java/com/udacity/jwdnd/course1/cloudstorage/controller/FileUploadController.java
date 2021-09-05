@@ -45,11 +45,11 @@ public class FileUploadController {
         return "redirect:/home";
     }
 
-    @PostMapping("/home")
-    public String deleteFiles(Model model) {
-        model.addAttribute("deleteFiles", userService.deleteUserSignupData(10));
-        return "/home";
-    }
+//    @PostMapping("/home/")
+//    public String deleteFiles(Model model) {
+//        model.addAttribute("deleteFiles", userService.deleteUserSignupData(10));
+//        return "redirect:/home";
+//    }
 
 //    @PostMapping("/home")
 //    public String deleteFiles(@ModelAttribute("users") Users users, Model model) {

@@ -18,7 +18,7 @@ public interface FileMapper {
     @Select("SELECT * from FILES WHERE userid=#{userId}")
     Files findById(long id);
 
-    @Insert("INSERT into FILES(fileId,filename,contenttype,filesize,filedata) VALUES(#{fileId},#{fileName},#{contentType},#{fileSize},#{fileData})")
+    @Insert("INSERT into FILES(filename,contenttype,filesize,filedata,userid) VALUES(#{fileName},#{contentType},#{fileSize},#{fileData},#{userId})")
     int insertFileData(Files files);
 
     @Delete("DELETE from FILES WHERE userid=#{userId}")
