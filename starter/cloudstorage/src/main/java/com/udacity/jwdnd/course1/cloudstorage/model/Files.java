@@ -20,12 +20,12 @@ public class Files {
     public Files() {
     }
 
-    public Files(String fileName, String contentType, long fileSize, byte[] fileData, int userId) {
+    public Files(String fileName, String contentType, long fileSize, int userId, byte[] fileData) {
         this.fileName = fileName;
         this.contentType = contentType;
         this.fileSize = fileSize;
-        this.fileData = fileData;
         this.userId = userId;
+        this.fileData = fileData;
     }
 
     public Files(String fileName, String contentType, long fileSize, byte[] fileData) {

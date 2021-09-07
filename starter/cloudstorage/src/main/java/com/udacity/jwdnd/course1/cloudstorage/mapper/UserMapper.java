@@ -1,10 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.mapper;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Users;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -13,9 +10,6 @@ public interface UserMapper {
 
     @Select("SELECT * from USERS")
     List<Users> findAll();
-
-    @Select("SELECT userid from USERS")
-    List<Users> getUserId();
 
     @Select("SELECT * from USERS WHERE userid=#{userId}")
     Users findById(long id);

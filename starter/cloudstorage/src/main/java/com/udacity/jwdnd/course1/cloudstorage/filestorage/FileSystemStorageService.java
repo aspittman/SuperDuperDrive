@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.filestorage;
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
+import com.udacity.jwdnd.course1.cloudstorage.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
@@ -12,6 +13,7 @@ import com.udacity.jwdnd.course1.cloudstorage.model.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Service
 public class FileSystemStorageService implements StorageService {
@@ -21,6 +23,11 @@ public class FileSystemStorageService implements StorageService {
 
     @Autowired
     FileMapper fileMapper;
+
+    @Override
+    public List<Files> displayFileList() {
+        return fileMapper.findAll();
+    }
 
     @Override
     public void store(MultipartFile file) {
@@ -33,8 +40,9 @@ public class FileSystemStorageService implements StorageService {
             String fileContentType = file.getContentType();
             long fileSize = file.getSize();
             byte[] fileData = file.getBytes();
+            Users foreignKeyIdentifier = new Users();
 
-            Files files = new Files(fileName, fileContentType, fileSize, fileData);
+            Files files = new Files(fileName, fileContentType, fileSize, 12, fileData);
             fileMapper.insertFileData(files);
 
         } catch (IOException e) {

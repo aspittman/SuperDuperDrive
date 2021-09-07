@@ -55,14 +55,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="#" method="post">
-                        <tr th:each="users: ${files}">
+                        <form action="#" enctype="multipart/form-data" method="post">
+                        <tr th:each="file: ${files}">
                             <td>
                                 <a class="btn btn-success" target="_blank">View</a>
                                 <input type="hidden" name="deleteFiles" value="delete" />
                                 <button type="submit" class="btn btn-danger" id="deleteFiles">Delete</button>
                             </td>
-                            <th scope="row" th:text="${users.firstName}">Test Files</th>
+                            <th scope="row" th:text="${file.fileName}">Display Files</th>
                         </tr>
                         </form>
                         </tbody>

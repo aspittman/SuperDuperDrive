@@ -1,6 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
 import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageService;
+import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class CloudStorageApplication implements CommandLineRunner {
 	private UserMapper userMapper;
 
 	@Autowired
+	private FileMapper fileMapper;
+
+	@Autowired
 	private StorageService storageService;
 
 	@Override
@@ -36,7 +40,7 @@ public class CloudStorageApplication implements CommandLineRunner {
 //		logger.info("Insert into database this -> {}", userMapper.insertTwo(new Users(4, "xcvb", "nbvc")));
 
 	//	logger.info("Delete -> {}", userMapper.deleteById(5));
-		logger.info("Select -> {}", userMapper.getUserId());
+		logger.info("Select -> {}", fileMapper.findAll());
 	}
 
 	public static void main(String[] args) {
