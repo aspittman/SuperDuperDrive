@@ -1,4 +1,4 @@
-package com.udacity.jwdnd.course1.cloudstorage.filestorage;
+package com.udacity.jwdnd.course1.cloudstorage.services.home.files;
 
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Files;
@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-public interface StorageService {
+public interface FileService {
 
     List<Files> displayFileList();
 

@@ -1,22 +1,19 @@
-package com.udacity.jwdnd.course1.cloudstorage.filestorage;
+package com.udacity.jwdnd.course1.cloudstorage.services.home.files;
 
+import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageException;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
-import com.udacity.jwdnd.course1.cloudstorage.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-import java.io.InputStream;
+
 import com.udacity.jwdnd.course1.cloudstorage.model.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+
 import java.util.List;
 
 @Service
-public class FileSystemStorageService implements StorageService {
+public class FileServiceImpl implements FileService {
 
     @Autowired
     UserMapper userMapper;
@@ -40,7 +37,6 @@ public class FileSystemStorageService implements StorageService {
             String fileContentType = file.getContentType();
             long fileSize = file.getSize();
             byte[] fileData = file.getBytes();
-            Users foreignKeyIdentifier = new Users();
 
             Files files = new Files(fileName, fileContentType, fileSize, 12, fileData);
             fileMapper.insertFileData(files);

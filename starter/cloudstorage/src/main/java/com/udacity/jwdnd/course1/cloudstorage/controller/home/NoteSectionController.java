@@ -1,15 +1,11 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller.home;
 
-import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageService;
 import com.udacity.jwdnd.course1.cloudstorage.model.Notes;
-import com.udacity.jwdnd.course1.cloudstorage.model.Users;
-import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
-import com.udacity.jwdnd.course1.cloudstorage.services.home.NoteService;
+import com.udacity.jwdnd.course1.cloudstorage.services.home.notes.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,12 +21,12 @@ public class NoteSectionController {
 
     @GetMapping("/home")
     public String listAllNotes(Model model) {
-        model.addAttribute("notes", noteService.displayNotes());
+        model.addAttribute("notes", noteService.displayNotesList());
         return "home";
     }
 
     @PostMapping("/home")
-    public String insertCreatedNotes(Notes notes, Model model,
+    public String uploadCreatedNotes(Notes notes, Model model,
                                      RedirectAttributes redirectAttributes) {
         noteService.insertNotes(notes);
         model.addAttribute("notes", notes);

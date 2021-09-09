@@ -14,7 +14,7 @@ public interface FileMapper {
     List<Files> findAll();
 
     @Select("SELECT * from FILES WHERE userid=#{userId}")
-    Files findById(long id);
+    List<Files> findById(long id);
 
     @Insert("INSERT into FILES(filename,contenttype,filesize,userid,filedata) VALUES(#{fileName},#{contentType},#{fileSize},#{userId},#{fileData})")
     @Options(useGeneratedKeys = true, keyProperty = "fileId")

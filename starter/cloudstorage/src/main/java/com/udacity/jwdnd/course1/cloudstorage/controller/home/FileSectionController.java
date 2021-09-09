@@ -1,29 +1,22 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller.home;
 
-import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageService;
-import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
-import com.udacity.jwdnd.course1.cloudstorage.model.Users;
+import com.udacity.jwdnd.course1.cloudstorage.services.home.files.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class FileSectionController {
 
-    private final StorageService storageService;
+    private final FileService storageService;
     private final UserService userService;
 
     @Autowired
-    public FileSectionController(StorageService storageService, UserService userService) {
+    public FileSectionController(FileService storageService, UserService userService) {
         this.storageService = storageService;
         this.userService = userService;
     }

@@ -14,9 +14,9 @@ public interface CredentialMapper {
     @Select("SELECT * from CREDENTIALS WHERE userid=#{userId}")
     Credentials findById(long id);
 
-    @Insert("INSERT into CREDENTIALS(credentialid,url,username,key,password,userid) VALUES(#{credentialId},#{url},#{username},#{key},#{password},#{userId})")
-    @Options(useGeneratedKeys = true, keyProperty = "credentialid")
-    int insertFileData(Credentials credentials);
+    @Insert("INSERT into CREDENTIALS(url,username,key,password,userid) VALUES(#{url},#{username},#{key},#{password},#{userId})")
+    @Options(useGeneratedKeys = true, keyProperty = "credentialId")
+    int insertCredentialData(Credentials credentials);
 
     @Delete("DELETE from CREDENTIALS WHERE userid=#{userId}")
     int deleteById(long id);

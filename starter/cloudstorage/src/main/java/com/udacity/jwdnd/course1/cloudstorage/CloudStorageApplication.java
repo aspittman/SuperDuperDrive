@@ -1,16 +1,12 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
-import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageService;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
-import com.udacity.jwdnd.course1.cloudstorage.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,8 +37,9 @@ public class CloudStorageApplication implements CommandLineRunner {
 //		logger.info("Insert into database this -> {}", userMapper.insertTwo(new Users(4, "xcvb", "nbvc")));
 
 	//	logger.info("Delete -> {}", userMapper.deleteById(5));
-		logger.info("Select -> {}", fileMapper.findAll());
-		logger.info("Select -> {}", userMapper.findAll());
+//		logger.info("Select -> {}", fileMapper.findById(12));
+//		logger.info("Select -> {}", userMapper.findById(12));
+//		logger.info("Select -> {}", noteMapper.findById(12));
 	}
 
 	public static void main(String[] args) {

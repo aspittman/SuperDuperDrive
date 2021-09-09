@@ -7,21 +7,15 @@ public class Notes {
     String noteDescription;
     int userId;
 
-
     public Notes(String noteTitle, String noteDescription, int userId) {
         this.noteTitle = noteTitle;
         this.noteDescription = noteDescription;
         this.userId = userId;
     }
 
+    public int getNoteId() { return noteId; }
 
-    public int getNoteId() {
-        return noteId;
-    }
-
-    public void setNoteId(int noteId) {
-        this.noteId = noteId;
-    }
+    public void setNoteId(int noteId) { this.noteId = noteId; }
 
     public String getNoteTitle() {
         return noteTitle;

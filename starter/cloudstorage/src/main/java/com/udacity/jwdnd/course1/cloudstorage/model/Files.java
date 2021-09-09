@@ -17,9 +17,6 @@ public class Files {
     //foreign key (userid) references USERS(userid)
 
 
-    public Files() {
-    }
-
     public Files(String fileName, String contentType, long fileSize, int userId, byte[] fileData) {
         this.fileName = fileName;
         this.contentType = contentType;
@@ -28,20 +25,9 @@ public class Files {
         this.fileData = fileData;
     }
 
-    public Files(String fileName, String contentType, long fileSize, byte[] fileData) {
-        this.fileName = fileName;
-        this.contentType = contentType;
-        this.fileSize = fileSize;
-        this.fileData = fileData;
-    }
+    public int getFileId() { return fileId; }
 
-    public int getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(int fileId) {
-        this.fileId = fileId;
-    }
+    public void setFileId(int fileId) { this.fileId = fileId; }
 
     public String getFileName() {
         return fileName;

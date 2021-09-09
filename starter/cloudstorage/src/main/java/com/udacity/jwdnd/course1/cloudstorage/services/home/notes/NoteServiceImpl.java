@@ -1,10 +1,8 @@
-package com.udacity.jwdnd.course1.cloudstorage.services.home;
+package com.udacity.jwdnd.course1.cloudstorage.services.home.notes;
 
-import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageException;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
-import com.udacity.jwdnd.course1.cloudstorage.model.Files;
 import com.udacity.jwdnd.course1.cloudstorage.model.Notes;
-import com.udacity.jwdnd.course1.cloudstorage.model.Users;
+import com.udacity.jwdnd.course1.cloudstorage.services.home.notes.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ public class NoteServiceImpl implements NoteService {
     NoteMapper noteMapper;
 
     @Override
-    public List<Notes> displayNotes() {
+    public List<Notes> displayNotesList() {
         return noteMapper.findAll();
     }
 
@@ -28,7 +26,7 @@ public class NoteServiceImpl implements NoteService {
         String noteDescription = notes.getNoteDescription();
         int userId = notes.getUserId();
 
-        Notes notesModel = new Notes(noteTitle, noteDescription,12);
+        Notes notesModel = new Notes(noteTitle, noteDescription, 12);
         noteMapper.insertNoteData(notesModel);
     }
 
