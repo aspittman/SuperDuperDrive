@@ -8,17 +8,15 @@ import java.util.List;
 @Mapper
 public interface NoteMapper {
 
-    //basic skeleton of what sql note saving should be like
-    //copy and paste from filemapper edit when ready
     @Select("SELECT * from NOTES")
     List<Notes> findAll();
 
     @Select("SELECT * from NOTES WHERE userid=#{userId}")
     Notes findById(long id);
 
-    @Insert("INSERT into NOTES(noteid,notetitle,notedescription,userid) VALUES(#{noteId},#{noteTitle},#{noteDescription},#{userId})")
+    @Insert("INSERT into NOTES(notetitle,notedescription,userid) VALUES(#{noteTitle},#{noteDescription},#{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "noteid")
-    int insertFileData(Notes notes);
+    int insertNoteData(Notes notes);
 
     @Delete("DELETE from NOTES WHERE userid=#{userId}")
     int deleteById(long id);

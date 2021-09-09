@@ -8,8 +8,6 @@ import java.util.List;
 @Mapper
 public interface CredentialMapper {
 
-    //basic skeleton of what sql credential saving should be like
-    //copy and paste from filemapper edit when ready
     @Select("SELECT * from CREDENTIALS")
     List<Credentials> findAll();
 

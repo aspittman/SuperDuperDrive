@@ -8,8 +8,7 @@ public class Notes {
     int userId;
 
 
-    public Notes(int noteId, String noteTitle, String noteDescription, int userId) {
-        this.noteId = noteId;
+    public Notes(String noteTitle, String noteDescription, int userId) {
         this.noteTitle = noteTitle;
         this.noteDescription = noteDescription;
         this.userId = userId;

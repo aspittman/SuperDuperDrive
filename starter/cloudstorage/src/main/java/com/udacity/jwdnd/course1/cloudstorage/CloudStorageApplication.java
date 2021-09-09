@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage;
 
 import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageService;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
+import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,10 @@ public class CloudStorageApplication implements CommandLineRunner {
 	private UserMapper userMapper;
 
 	@Autowired
-	private FileMapper fileMapper;
+	private NoteMapper noteMapper;
 
 	@Autowired
-	private StorageService storageService;
+	private FileMapper fileMapper;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -41,6 +42,7 @@ public class CloudStorageApplication implements CommandLineRunner {
 
 	//	logger.info("Delete -> {}", userMapper.deleteById(5));
 		logger.info("Select -> {}", fileMapper.findAll());
+		logger.info("Select -> {}", userMapper.findAll());
 	}
 
 	public static void main(String[] args) {

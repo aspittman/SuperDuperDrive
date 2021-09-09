@@ -1,4 +1,4 @@
-package com.udacity.jwdnd.course1.cloudstorage.controller;
+package com.udacity.jwdnd.course1.cloudstorage.controller.home;
 
 import com.udacity.jwdnd.course1.cloudstorage.filestorage.StorageService;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
@@ -17,24 +17,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-public class FileUploadController {
+public class FileSectionController {
 
     private final StorageService storageService;
     private final UserService userService;
 
     @Autowired
-    public FileUploadController(StorageService storageService, UserService userService) {
+    public FileSectionController(StorageService storageService, UserService userService) {
         this.storageService = storageService;
         this.userService = userService;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/home/files")
     public String listUploadedFiles(Model model) {
         model.addAttribute("files", storageService.displayFileList());
         return "home";
     }
 
-    @PostMapping("/home")
+    @PostMapping("/home/files")
     public String handleFileUpload(@RequestParam("fileUpload") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
