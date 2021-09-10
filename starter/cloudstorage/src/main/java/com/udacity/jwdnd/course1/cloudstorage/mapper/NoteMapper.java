@@ -15,9 +15,9 @@ public interface NoteMapper {
     List<Notes> findById(long id);
 
     @Insert("INSERT into NOTES(notetitle,notedescription,userid) VALUES(#{noteTitle},#{noteDescription},#{userId})")
-    @Options(useGeneratedKeys = true, keyProperty = "noteid")
-    int insertNoteData(Notes notes);
+    @Options(useGeneratedKeys = true, keyProperty = "noteId")
+    Integer insertNoteData(Notes notes);
 
     @Delete("DELETE from NOTES WHERE userid=#{userId}")
-    int deleteById(long id);
+    Integer deleteById(long id);
 }

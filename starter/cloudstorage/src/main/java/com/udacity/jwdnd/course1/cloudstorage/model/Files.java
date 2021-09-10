@@ -7,17 +7,17 @@ public class Files {
     //Mostly complete last two variables may be a bit off
     //still not to sure about "primary key"
 
-    int fileId;
+    Integer fileId;
     String fileName;
     String contentType;
     long fileSize;
-    int userId;
+    Integer userId;
     //FileData represented as BLOB
     byte[] fileData;
     //foreign key (userid) references USERS(userid)
 
 
-    public Files(String fileName, String contentType, long fileSize, int userId, byte[] fileData) {
+    public Files(String fileName, String contentType, long fileSize, Integer userId, byte[] fileData) {
         this.fileName = fileName;
         this.contentType = contentType;
         this.fileSize = fileSize;
@@ -25,9 +25,13 @@ public class Files {
         this.fileData = fileData;
     }
 
-    public int getFileId() { return fileId; }
+    public Integer getFileId() {
+        return fileId;
+    }
 
-    public void setFileId(int fileId) { this.fileId = fileId; }
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
+    }
 
     public String getFileName() {
         return fileName;
@@ -53,11 +57,11 @@ public class Files {
         this.fileSize = fileSize;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

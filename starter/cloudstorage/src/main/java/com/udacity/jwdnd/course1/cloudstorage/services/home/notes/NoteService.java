@@ -11,5 +11,5 @@ public interface NoteService {
 
     void insertNotes(Notes notes);
 
-    int deleteNotes(long id);
+    Integer deleteNotes(long id);
 }

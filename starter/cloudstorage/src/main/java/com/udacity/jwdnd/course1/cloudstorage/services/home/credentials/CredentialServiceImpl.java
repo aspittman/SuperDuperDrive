@@ -34,7 +34,7 @@ public class CredentialServiceImpl implements CredentialService {
     }
 
     @Override
-    public int deleteCredentials(long id) {
+    public Integer deleteCredentials(long id) {
         return 0;
     }
 }

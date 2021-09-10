@@ -24,14 +24,13 @@ public class NoteServiceImpl implements NoteService {
 
         String noteTitle = notes.getNoteTitle();
         String noteDescription = notes.getNoteDescription();
-        int userId = notes.getUserId();
 
         Notes notesModel = new Notes(noteTitle, noteDescription, 12);
         noteMapper.insertNoteData(notesModel);
     }
 
     @Override
-    public int deleteNotes(long id) {
+    public Integer deleteNotes(long id) {
         return 0;
     }
 }

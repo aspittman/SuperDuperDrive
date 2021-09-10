@@ -15,12 +15,12 @@ public interface UserMapper {
     Users findById(long id);
 
     @Insert("INSERT into USERS(firstname,lastname,username,password) VALUES(#{firstName},#{lastName},#{username},#{password})")
-    int insertUserData(Users users);
+    Integer insertUserData(Users users);
 
     @Insert("INSERT into USERS(userid,firstname,lastname) VALUES(#{userId},#{firstName},#{lastName})")
-    int insertTwo(Users users);
+    Integer insertTwo(Users users);
 
     @Delete("DELETE from USERS WHERE userid=#{userId}")
-    int deleteById(long id);
+    Integer deleteById(long id);
 
 }

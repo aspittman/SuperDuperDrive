@@ -13,5 +13,5 @@ public interface FileService {
 
     void store(MultipartFile file);
 
-    void deleteFile(int id);
+    void deleteFile(Integer id);
 }

@@ -11,5 +11,5 @@ public interface CredentialService {
 
     void insertCredentials(Credentials credentials);
 
-    int deleteCredentials(long id);
+    Integer deleteCredentials(long id);
 }

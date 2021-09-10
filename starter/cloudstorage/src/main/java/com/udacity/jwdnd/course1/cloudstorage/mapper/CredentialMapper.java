@@ -16,8 +16,8 @@ public interface CredentialMapper {
 
     @Insert("INSERT into CREDENTIALS(url,username,key,password,userid) VALUES(#{url},#{username},#{key},#{password},#{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "credentialId")
-    int insertCredentialData(Credentials credentials);
+    Integer insertCredentialData(Credentials credentials);
 
     @Delete("DELETE from CREDENTIALS WHERE userid=#{userId}")
-    int deleteById(long id);
+    Integer deleteById(long id);
 }
