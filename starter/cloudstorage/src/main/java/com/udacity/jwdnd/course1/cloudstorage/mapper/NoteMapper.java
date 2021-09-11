@@ -11,6 +11,9 @@ public interface NoteMapper {
     @Select("SELECT * from NOTES")
     List<Notes> findAll();
 
+    @Select("SELECT notedescription from NOTES")
+    List<String> findDesc();
+
     @Select("SELECT * from NOTES WHERE userid=#{userId}")
     List<Notes> findById(long id);
 

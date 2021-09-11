@@ -36,10 +36,10 @@ public class CloudStorageApplication implements CommandLineRunner {
 //		logger.info("Insert into database this -> {}", userMapper.insertOne(new Users(3, "rty", "ytre")));
 //		logger.info("Insert into database this -> {}", userMapper.insertTwo(new Users(4, "xcvb", "nbvc")));
 
-	//	logger.info("Delete -> {}", userMapper.deleteById(5));
-//		logger.info("Select -> {}", fileMapper.findById(12));
+//		logger.info("Delete -> {}", userMapper.deleteById(5));
+//		logger.info("Select -> {}", fileMapper.findAll());
 //		logger.info("Select -> {}", userMapper.findById(12));
-//		logger.info("Select -> {}", noteMapper.findById(12));
+//		logger.info("Select -> {}", noteMapper.findAll());
 	}
 
 	public static void main(String[] args) {

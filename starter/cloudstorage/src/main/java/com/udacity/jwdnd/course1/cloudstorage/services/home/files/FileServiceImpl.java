@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService {
             long fileSize = file.getSize();
             byte[] fileData = file.getBytes();
 
-            Files files = new Files(fileName, fileContentType, fileSize, 12, fileData);
+            Files files = new Files(fileName, fileContentType, fileSize, 15, fileData);
             fileMapper.insertFileData(files);
 
         } catch (IOException e) {

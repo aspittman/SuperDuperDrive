@@ -12,18 +12,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class FileSectionController {
 
-    private final FileService storageService;
+    private final FileService fileService;
     private final UserService userService;
 
     @Autowired
-    public FileSectionController(FileService storageService, UserService userService) {
-        this.storageService = storageService;
+    public FileSectionController(FileService fileService, UserService userService) {
+        this.fileService = fileService;
         this.userService = userService;
     }
 
     @GetMapping("/home/files")
     public String listUploadedFiles(Model model) {
-        model.addAttribute("files", storageService.displayFileList());
+        model.addAttribute("files", fileService.displayFileList());
         return "home";
     }
 
@@ -31,7 +31,7 @@ public class FileSectionController {
     public String handleFileUpload(@RequestParam("fileUpload") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
-        storageService.store(file);
+        fileService.store(file);
         redirectAttributes.addFlashAttribute("dialog",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 

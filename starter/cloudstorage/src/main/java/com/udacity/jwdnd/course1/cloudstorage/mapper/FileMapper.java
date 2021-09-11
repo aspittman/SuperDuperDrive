@@ -13,6 +13,9 @@ public interface FileMapper {
     @Select("SELECT * from FILES")
     List<Files> findAll();
 
+    @Select("SELECT contenttype from FILES")
+    List<String> findName();
+
     @Select("SELECT * from FILES WHERE userid=#{userId}")
     List<Files> findById(long id);
 

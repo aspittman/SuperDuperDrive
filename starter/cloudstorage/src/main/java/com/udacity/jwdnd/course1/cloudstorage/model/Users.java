@@ -9,23 +9,10 @@ public class Users {
     private String firstName;
     private String lastName;
 
-    public Users() {}
-
-    public Users(Integer userId, String firstName, String lastName) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Users() {
     }
 
-    public Users(String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-    }
-
-    public Users(Integer userId, String username, String salt, String password, String firstName, String lastName) {
-        this.userId = userId;
+    public Users(String username, String salt, String password, String firstName, String lastName) {
         this.username = username;
         this.salt = salt;
         this.password = password;

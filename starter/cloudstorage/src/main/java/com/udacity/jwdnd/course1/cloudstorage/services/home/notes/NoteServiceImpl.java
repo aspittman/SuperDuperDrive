@@ -25,7 +25,7 @@ public class NoteServiceImpl implements NoteService {
         String noteTitle = notes.getNoteTitle();
         String noteDescription = notes.getNoteDescription();
 
-        Notes notesModel = new Notes(noteTitle, noteDescription, 12);
+        Notes notesModel = new Notes(noteTitle, noteDescription, 15);
         noteMapper.insertNoteData(notesModel);
     }
 
