@@ -39,7 +39,7 @@ public class CloudStorageApplication implements CommandLineRunner {
 
 //		logger.info("Delete -> {}", userMapper.deleteById(5));
 //		logger.info("Select -> {}", fileMapper.findAll());
-//		logger.info("Select -> {}", userMapper.findById(12));
+		logger.info("Select -> {}", userMapper.findAll());
 //		logger.info("Select -> {}", noteMapper.findAll());
 	}
 

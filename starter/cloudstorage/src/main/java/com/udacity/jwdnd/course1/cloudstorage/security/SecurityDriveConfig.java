@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.security;
 
+import com.udacity.jwdnd.course1.cloudstorage.services.security.AuthenticationService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,8 +11,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityDriveConfig extends WebSecurityConfigurerAdapter {
 
+    public AuthenticationService authenticationService;
+
+    public SecurityDriveConfig(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
+
         http.csrf().disable()
 			.authorizeRequests()
                 .antMatchers("/", "/login", "/signup").permitAll()
@@ -31,9 +40,6 @@ public class SecurityDriveConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password("{noop}pass") // Spring Security 5 requires specifying the password storage format
-                .roles("USER");
+        auth.authenticationProvider(this.authenticationService);
     }
 }
