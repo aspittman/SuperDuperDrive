@@ -14,19 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/signup")
 public class SignupController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+
+    public SignupController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping()
-    public String renderSignupPage(Model model) {
-        model.addAttribute("users", new Users());
+    public String renderSignupPage() {
         return "signup";
     }
 
     @PostMapping()
-    public String insertUserSignup(@ModelAttribute("users") Users users, Model model) {
-        model.addAttribute("users", users);
-        userService.insertUserSignupData(users);
+    public String insertUserSignup(@ModelAttribute Users users, Model model) {
+        String signupError = null;
+
+        if (!userService.isUsernameAvailable(users.getUsername())) {
+            signupError = "The username already exists.";
+        }
+
+        if (signupError == null) {
+            int rowsAdded = userService.insertUserSignupData(users);
+            if (rowsAdded < 0) {
+                signupError = "There was an error signing you up. Please try again.";
+            }
+        }
+
+        if (signupError == null) {
+            model.addAttribute("signupSuccess", true);
+        } else {
+            model.addAttribute("signupError", signupError);
+        }
         return "signup";
     }
 }
