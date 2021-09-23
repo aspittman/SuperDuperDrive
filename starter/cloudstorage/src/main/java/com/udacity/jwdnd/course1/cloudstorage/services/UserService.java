@@ -8,6 +8,8 @@ public interface UserService {
 
     List<Users> displayUserList();
 
+    Boolean isUsernameAvailable(String username);
+
     int insertUserSignupData(Users users);
 
     int deleteUserSignupData(long id);

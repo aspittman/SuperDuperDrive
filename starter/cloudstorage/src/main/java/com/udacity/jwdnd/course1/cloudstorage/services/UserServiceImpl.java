@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Boolean isUsernameAvailable(String username) {
+            return userMapper.getUser(username) == null;
+    }
+
+    @Override
     public int insertUserSignupData(Users users) {
 
         SecureRandom random = new SecureRandom();
