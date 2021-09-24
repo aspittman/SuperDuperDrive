@@ -19,13 +19,13 @@ public class NoteSectionController {
         this.noteService = noteService;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/home/notes")
     public String listAllNotes(Model model) {
         model.addAttribute("notes", noteService.displayNotesList());
         return "home";
     }
 
-    @PostMapping("/home")
+    @PostMapping("/home/notes")
     public String uploadCreatedNotes(Notes notes, Model model,
                                      RedirectAttributes redirectAttributes) {
         noteService.insertNotes(notes);

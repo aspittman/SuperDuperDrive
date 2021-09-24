@@ -11,7 +11,9 @@ public interface FileService {
 
     List<Files> displayFileList();
 
-    void store(MultipartFile file);
+    void getUserId();
+
+    Integer insertFiles(MultipartFile file);
 
     void deleteFile(Integer id);
 }

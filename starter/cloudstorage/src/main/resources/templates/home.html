@@ -31,7 +31,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div aria-labelledby="nav-files-tab" class="tab-pane fade show active" id="nav-files" role="tabpanel">
-                <form action="#" enctype="multipart/form-data" method="POST">
+                <form action="#" th:action="@{/home}" enctype="multipart/form-data" method="POST">
                     <div class="container">
                         <div class="row" style="margin: 1em;">
                             <div class="col-sm-2">
@@ -55,7 +55,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="#" enctype="multipart/form-data" method="post">
+                        <form action="#" th:action="@{/home}" enctype="multipart/form-data" method="post">
                         <tr th:each="file: ${files}">
                             <td>
                                 <a class="btn btn-success" target="_blank">View</a>

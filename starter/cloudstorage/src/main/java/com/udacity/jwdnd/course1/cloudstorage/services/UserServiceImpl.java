@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insertUserSignupData(Users users) {
+    public Integer insertUserSignupData(Users users) {
 
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int deleteUserSignupData(long id) {
+    public Integer deleteUserSignupData(long id) {
         return userMapper.deleteById(id);
     }
 

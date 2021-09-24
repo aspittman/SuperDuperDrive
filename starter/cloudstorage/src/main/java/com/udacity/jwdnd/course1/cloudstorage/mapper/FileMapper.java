@@ -16,7 +16,7 @@ public interface FileMapper {
     @Select("SELECT contenttype from FILES")
     List<String> findName();
 
-    @Select("SELECT * from FILES WHERE userid=#{userId}")
+    @Select("SELECT userid from FILES WHERE userid=#{userId}")
     List<Files> findById(long id);
 
     @Insert("INSERT into FILES(filename,contenttype,filesize,userid,filedata) VALUES(#{fileName},#{contentType},#{fileSize},#{userId},#{fileData})")

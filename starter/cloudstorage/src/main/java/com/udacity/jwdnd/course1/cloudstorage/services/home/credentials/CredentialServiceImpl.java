@@ -1,6 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.services.home.credentials;
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.CredentialMapper;
+import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Credentials;
 import com.udacity.jwdnd.course1.cloudstorage.model.Notes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,11 @@ import java.util.List;
 @Service
 public class CredentialServiceImpl implements CredentialService {
 
-    @Autowired
-    CredentialMapper credentialMapper;
+    private final CredentialMapper credentialMapper;
+
+    public CredentialServiceImpl(CredentialMapper credentialMapper) {
+        this.credentialMapper = credentialMapper;
+    }
 
     @Override
     public List<Credentials> displayCredentialsList() {
@@ -28,8 +32,8 @@ public class CredentialServiceImpl implements CredentialService {
         int userId = credentials.getUserId();
         String credentialsDecryptedPassword= credentials.getDecryptedPassword();
 
-        Credentials credentialsModel = new Credentials(credentialsUrl, credentialsUsername, credentialsKey,
-                credentialsPassword, 12, credentialsDecryptedPassword);
+        Credentials credentialsModel = new Credentials(null, credentialsUrl, credentialsUsername, credentialsKey,
+                credentialsPassword, 32, credentialsDecryptedPassword);
         credentialMapper.insertCredentialData(credentialsModel);
     }
 

@@ -21,28 +21,28 @@ public class FileSectionController {
         this.userService = userService;
     }
 
-    @GetMapping("/home/files")
+    @GetMapping("/home")
     public String listUploadedFiles(Model model) {
         model.addAttribute("files", fileService.displayFileList());
         return "home";
     }
 
-    @PostMapping("/home/files")
+    @PostMapping("/home")
     public String handleFileUpload(@RequestParam("fileUpload") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
-        fileService.store(file);
+        fileService.insertFiles(file);
         redirectAttributes.addFlashAttribute("dialog",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
         return "redirect:/home";
     }
 
-    @PostMapping("/home/deleted")
-    public String deleteFiles(Model model) {
-        model.addAttribute("deleteFiles", userService.deleteUserSignupData(10));
-        return "redirect:/home";
-    }
+//    @PostMapping("/home/deleted")
+//    public String deleteFiles(Model model) {
+//        model.addAttribute("deleteFiles", userService.deleteUserSignupData(10));
+//        return "redirect:/home";
+//    }
 
 //    @PostMapping("/home")
 //    public String deleteFiles(@ModelAttribute("users") Users users, Model model) {
