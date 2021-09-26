@@ -85,14 +85,16 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <form action="#" th:action="@{/home/notes}" enctype="multipart/form-data" method="post">
                         <tr th:each="note: ${notes}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
                                 <a class="btn btn-danger">Delete</a>
                             </td>
-                            <th scope="row" th:text="${notes.noteTitle}">Note Title</th>
-                            <td th:text="${notes.noteDescription}">Note Description</td>
+                            <th scope="row" th:text="${note.noteTitle}">Note Title</th>
+                            <td th:text="${note.noteDescription}">Note Description</td>
                         </tr>
+                        </form>
                         </tbody>
                     </table>
                 </div>
@@ -150,15 +152,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <form action="#" th:action="@{/home/credentials}" enctype="multipart/form-data" method="post">
                         <tr th:each="credential: ${credentials}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
                                 <a class="btn btn-danger">Delete</a>
                             </td>
-                            <th scope="row">Example Credential URL</th>
-                            <td>Example Credential Username</td>
-                            <td>Example Credential Password</td>
+                            <th scope="row" th:text="${credential.url}">Example Credential URL</th>
+                            <td th:text="${credential.username}">Example Credential Username</td>
+                            <td th:text="${credential.password}">Example Credential Password</td>
                         </tr>
+                        </form>
                         </tbody>
                     </table>
                 </div>

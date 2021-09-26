@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class CredentialSectionController {
 
+    //NEEDS INPUT STATEMENTS IN HOME.HTML!!!
     private final CredentialService credentialService;
 
     @Autowired
