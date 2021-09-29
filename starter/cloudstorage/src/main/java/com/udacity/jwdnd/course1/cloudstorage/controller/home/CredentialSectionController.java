@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class CredentialSectionController {
 
-    //NEEDS INPUT STATEMENTS IN HOME.HTML!!!
     private final CredentialService credentialService;
 
     @Autowired
@@ -25,17 +24,17 @@ public class CredentialSectionController {
 
     @GetMapping("/home/credentials")
     public String listOfCredentials(Model model) {
-        model.addAttribute("notes", credentialService.displayCredentialsList());
+        model.addAttribute("credentials", credentialService.displayCredentialsList());
         return "home";
     }
 
     @PostMapping("/home/credentials")
-    public String uploadUserCredentials(@ModelAttribute("credentials") Credentials credentials,
-                                        Model model, RedirectAttributes redirectAttributes) {
+    public String uploadUserCredentials(@ModelAttribute("credentials") Credentials credentials, Model model,
+                                        RedirectAttributes redirectAttributes) {
         credentialService.insertCredentials(credentials);
         model.addAttribute("credentials", credentials);
         redirectAttributes.addFlashAttribute("dialog",
-                "You successfully saved " + credentials.getUsername() + " 's credentials!");
-        return "redirect:/home";
+                "You successfully saved " + credentials.getUsername() + "'s credentials!");
+        return "redirect:/home/credentials";
     }
 }

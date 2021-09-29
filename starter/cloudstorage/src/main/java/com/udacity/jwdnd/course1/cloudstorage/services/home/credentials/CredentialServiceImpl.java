@@ -29,11 +29,10 @@ public class CredentialServiceImpl implements CredentialService {
         String credentialsUsername = credentials.getUsername();
         String credentialsKey = credentials.getKey();
         String credentialsPassword= credentials.getPassword();
-        int userId = credentials.getUserId();
-        String credentialsDecryptedPassword= credentials.getDecryptedPassword();
+    //    int userId = credentials.getUserId();
 
         Credentials credentialsModel = new Credentials(null, credentialsUrl, credentialsUsername, credentialsKey,
-                credentialsPassword, 32, credentialsDecryptedPassword);
+                credentialsPassword, 32);
         credentialMapper.insertCredentialData(credentialsModel);
     }
 

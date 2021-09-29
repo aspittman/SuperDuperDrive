@@ -1,4 +1,4 @@
-package com.udacity.jwdnd.course1.cloudstorage.filestorage;
+package com.udacity.jwdnd.course1.cloudstorage.services.home.files;
 
 public class StorageException extends RuntimeException{
 

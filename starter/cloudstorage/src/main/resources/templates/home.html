@@ -31,7 +31,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div aria-labelledby="nav-files-tab" class="tab-pane fade show active" id="nav-files" role="tabpanel">
-                <form action="#" th:action="@{/home}" enctype="multipart/form-data" method="POST">
+                <form action="home" enctype="multipart/form-data" method="POST">
                     <div class="container">
                         <div class="row" style="margin: 1em;">
                             <div class="col-sm-2">
@@ -55,7 +55,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="#" th:action="@{/home}" enctype="multipart/form-data" method="post">
                         <tr th:each="file: ${files}">
                             <td>
                                 <a class="btn btn-success" target="_blank">View</a>
@@ -64,7 +63,6 @@
                             </td>
                             <th scope="row" th:text="${file.fileName}">Display Files</th>
                         </tr>
-                        </form>
                         </tbody>
                     </table>
                 </div>
@@ -85,7 +83,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="#" th:action="@{/home/notes}" enctype="multipart/form-data" method="post">
                         <tr th:each="note: ${notes}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
@@ -94,7 +91,6 @@
                             <th scope="row" th:text="${note.noteTitle}">Note Title</th>
                             <td th:text="${note.noteDescription}">Note Description</td>
                         </tr>
-                        </form>
                         </tbody>
                     </table>
                 </div>
@@ -110,7 +106,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="POST">
+                                <form action="notes" method="POST">
                                     <input id="note-id" name="noteId" type="hidden">
                                     <div class="form-group">
                                         <label class="col-form-label" for="note-title">Title</label>
@@ -142,7 +138,7 @@
                 </button>
 
                 <div class="table-responsive">
-                    <table class="table table-striped" id="credentialTable" th:object="${credentials}">
+                    <table class="table table-striped" id="credentialTable">
                         <thead>
                         <tr>
                             <th scope="col" style="width: 20%"></th>
@@ -152,7 +148,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="#" th:action="@{/home/credentials}" enctype="multipart/form-data" method="post">
                         <tr th:each="credential: ${credentials}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
@@ -162,7 +157,6 @@
                             <td th:text="${credential.username}">Example Credential Username</td>
                             <td th:text="${credential.password}">Example Credential Password</td>
                         </tr>
-                        </form>
                         </tbody>
                     </table>
                 </div>
@@ -178,7 +172,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="POST">
+                                <form action="credentials" method="POST">
                                     <input id="credential-id" name="credentialId" type="hidden">
                                     <div class="form-group">
                                         <label class="col-form-label" for="note-title">URL</label>

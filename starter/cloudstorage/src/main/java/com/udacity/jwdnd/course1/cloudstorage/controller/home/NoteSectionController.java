@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,12 +27,12 @@ public class NoteSectionController {
     }
 
     @PostMapping("/home/notes")
-    public String uploadCreatedNotes(Notes notes, Model model,
+    public String uploadCreatedNotes(@ModelAttribute("notes") Notes notes, Model model,
                                      RedirectAttributes redirectAttributes) {
         noteService.insertNotes(notes);
         model.addAttribute("notes", notes);
         redirectAttributes.addFlashAttribute("dialog",
                 "You successfully created " + notes.getNoteTitle() + "!");
-        return "redirect:/home";
+        return "redirect:/home/notes";
     }
 }
