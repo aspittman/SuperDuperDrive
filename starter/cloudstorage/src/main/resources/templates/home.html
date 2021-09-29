@@ -55,14 +55,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <form action="home" enctype="multipart/form-data" method="POST">
                         <tr th:each="file: ${files}">
                             <td>
                                 <a class="btn btn-success" target="_blank">View</a>
                                 <input type="hidden" name="deleteFiles" value="delete" />
-                                <button type="submit" class="btn btn-danger" id="deleteFiles">Delete</button>
+                                <button type="submit" class="btn btn-danger" id="deleteFiles"
+                                        th:href="@{/file/delete/}+${file.fileId}">Delete</button>
                             </td>
                             <th scope="row" th:text="${file.fileName}">Display Files</th>
                         </tr>
+                        </form>
                         </tbody>
                     </table>
                 </div>

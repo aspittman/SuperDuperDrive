@@ -38,24 +38,12 @@ public class FileSectionController {
         return "redirect:/home";
     }
 
-//    @PostMapping("/home/deleted")
-//    public String deleteFiles(Model model) {
-//        model.addAttribute("deleteFiles", userService.deleteUserSignupData(10));
-//        return "redirect:/home";
-//    }
-
-//    @PostMapping("/home")
-//    public String deleteFiles(@ModelAttribute("users") Users users, Model model) {
-//        model.addAttribute("users", users);
-//        userMapper.deleteALL(users);
-//        return "redirect:/home";
-//    }
-
-//    @DeleteMapping
-//    @PostMapping("/home")
-//    public String insertUserSignup(@ModelAttribute("users") Users users, Model model) {
-//        model.addAttribute("users", users);
-//        userMapper.insertUserSignupData(users);
-//        return "redirect:/home";
-//    }
+    @PostMapping("/home/{id}")
+    public String deleteFiles(@PathVariable("id") String id,
+                              @RequestParam("fileUpload") MultipartFile file, Model model) {
+        if(!file.isEmpty()) {
+            model.addAttribute("deleteFiles", userService.deleteUserSignupData(Integer.parseInt(id)));
+        }
+        return "/home";
+    }
 }

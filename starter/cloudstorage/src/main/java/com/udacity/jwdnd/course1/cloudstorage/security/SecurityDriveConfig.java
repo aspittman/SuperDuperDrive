@@ -19,10 +19,11 @@ public class SecurityDriveConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.headers().frameOptions().disable();
+        http.headers().frameOptions().disable()
+                .and()
 
-        http.csrf().disable()
-			.authorizeRequests()
+                .csrf().disable()
+			    .authorizeRequests()
                 .antMatchers("/", "/login", "/signup").permitAll()
                 .antMatchers("/", "/login").authenticated()
                 .and()
