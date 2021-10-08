@@ -7,9 +7,7 @@ import com.udacity.jwdnd.course1.cloudstorage.services.home.notes.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -36,5 +34,11 @@ public class CredentialSectionController {
         redirectAttributes.addFlashAttribute("dialog",
                 "You successfully saved " + credentials.getUsername() + "'s credentials!");
         return "redirect:/home/credentials";
+    }
+
+    @DeleteMapping("/home/credentials")
+    public String deleteUserCredentials(@PathVariable("id") String id, Model model) {
+        model.addAttribute("credentials", credentialService.deleteCredentials(Integer.parseInt(id)));
+        return "home";
     }
 }

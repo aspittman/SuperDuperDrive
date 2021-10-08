@@ -36,6 +36,6 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public Integer deleteNotes(long id) {
-        return 0;
+        return noteMapper.deleteById(id);
     }
 }

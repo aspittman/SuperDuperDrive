@@ -55,17 +55,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="home" enctype="multipart/form-data" method="POST">
                         <tr th:each="file: ${files}">
                             <td>
                                 <a class="btn btn-success" target="_blank">View</a>
-                                <input type="hidden" name="deleteFiles" value="delete" />
-                                <button type="submit" class="btn btn-danger" id="deleteFiles"
-                                        th:href="@{/file/delete/}+${file.fileId}">Delete</button>
+                                <a class="btn btn-danger" th:href="@{/file/delete/}+${file.fileId}">Delete</a>
                             </td>
                             <th scope="row" th:text="${file.fileName}">Display Files</th>
                         </tr>
-                        </form>
                         </tbody>
                     </table>
                 </div>
@@ -89,7 +85,9 @@
                         <tr th:each="note: ${notes}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
-                                <a class="btn btn-danger">Delete</a>
+                                <form action="#" method="post">
+                                <a class="btn btn-danger" th:href="@{/home/notes/}+${note.noteId}">Delete</a>
+                                </form>
                             </td>
                             <th scope="row" th:text="${note.noteTitle}">Note Title</th>
                             <td th:text="${note.noteDescription}">Note Description</td>
@@ -109,7 +107,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="notes" method="POST">
+                                <form action="#" method="POST">
                                     <input id="note-id" name="noteId" type="hidden">
                                     <div class="form-group">
                                         <label class="col-form-label" for="note-title">Title</label>
@@ -154,7 +152,7 @@
                         <tr th:each="credential: ${credentials}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
-                                <a class="btn btn-danger">Delete</a>
+                                <a class="btn btn-danger" th:href="@{/credentials/delete/}+${credential.credentialId}">Delete</a>
                             </td>
                             <th scope="row" th:text="${credential.url}">Example Credential URL</th>
                             <td th:text="${credential.username}">Example Credential Username</td>

@@ -51,7 +51,7 @@ public class FileServiceImpl implements FileService {
         }
     }
     @Override
-    public void deleteFile(Integer id) {
-        userMapper.deleteById(id);
+    public Integer deleteFiles(long id) {
+        return userMapper.deleteById(id);
     }
 }

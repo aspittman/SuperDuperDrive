@@ -38,6 +38,6 @@ public class CredentialServiceImpl implements CredentialService {
 
     @Override
     public Integer deleteCredentials(long id) {
-        return 0;
+        return credentialMapper.deleteById(id);
     }
 }

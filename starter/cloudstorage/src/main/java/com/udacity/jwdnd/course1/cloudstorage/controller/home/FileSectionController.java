@@ -39,11 +39,8 @@ public class FileSectionController {
     }
 
     @PostMapping("/home/{id}")
-    public String deleteFiles(@PathVariable("id") String id,
-                              @RequestParam("fileUpload") MultipartFile file, Model model) {
-        if(!file.isEmpty()) {
-            model.addAttribute("deleteFiles", userService.deleteUserSignupData(Integer.parseInt(id)));
-        }
+    public String deleteUploadedFiles(@PathVariable("id") String id, Model model) {
+            model.addAttribute("deleteFiles", fileService.deleteFiles(Integer.parseInt(id)));
         return "/home";
     }
 }

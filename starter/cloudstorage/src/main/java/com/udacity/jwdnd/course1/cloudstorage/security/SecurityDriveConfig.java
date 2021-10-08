@@ -22,13 +22,11 @@ public class SecurityDriveConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable()
                 .and()
 
-                .csrf().disable()
 			    .authorizeRequests()
-                .antMatchers("/", "/login", "/signup").permitAll()
-                .antMatchers("/", "/login").authenticated()
-                .and()
+                .antMatchers("/", "/signup", "/css/**", "/js/**").permitAll()
+                .anyRequest().authenticated();
 
-                .formLogin()
+                http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/home", true)
