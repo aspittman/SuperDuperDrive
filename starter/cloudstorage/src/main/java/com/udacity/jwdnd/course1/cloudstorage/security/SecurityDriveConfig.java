@@ -23,10 +23,10 @@ public class SecurityDriveConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
 			    .authorizeRequests()
-                .antMatchers("/", "/signup", "/css/**", "/js/**").permitAll()
+                .antMatchers("/signup", "/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated();
 
-                http.formLogin()
+        http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/home", true)
