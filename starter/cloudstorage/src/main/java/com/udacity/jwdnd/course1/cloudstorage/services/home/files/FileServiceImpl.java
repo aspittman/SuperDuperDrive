@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file.");
             }
-            String fileName = file.getName();
+            String fileName = file.getOriginalFilename();
             String fileContentType = file.getContentType();
             long fileSize = file.getSize();
             byte[] fileData = file.getBytes();
@@ -52,6 +52,6 @@ public class FileServiceImpl implements FileService {
     }
     @Override
     public Integer deleteFiles(long id) {
-        return userMapper.deleteById(id);
+        return fileMapper.deleteById(id);
     }
 }

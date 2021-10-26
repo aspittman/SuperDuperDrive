@@ -38,9 +38,9 @@ public class FileSectionController {
         return "redirect:/home";
     }
 
-    @PostMapping("/home/{id}")
+    @DeleteMapping("/home")
     public String deleteUploadedFiles(@PathVariable("id") String id, Model model) {
             model.addAttribute("deleteFiles", fileService.deleteFiles(Integer.parseInt(id)));
-        return "/home";
+        return "redirect:/home";
     }
 }
