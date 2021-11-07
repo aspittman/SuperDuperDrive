@@ -37,6 +37,7 @@ public class NoteSectionController {
     @GetMapping("/home/notes/{id}")
     public String deleteUserNotes(@PathVariable("id") String id, Model model) {
         model.addAttribute("deleteNotes", noteService.deleteNotes(Integer.parseInt(id)));
-        return "home";
+        return "redirect:/home/notes";
     }
+
 }

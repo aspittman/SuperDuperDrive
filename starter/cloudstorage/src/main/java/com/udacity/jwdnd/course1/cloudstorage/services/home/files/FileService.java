@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface FileService {
 
-    List<Files> displayFileList();
+    List<Files> displayFileList(Integer userId);
 
-    void getUserId();
+    Integer getUserId(Integer userId);
 
-    Integer insertFiles(MultipartFile file);
+    Integer insertFiles(MultipartFile file, Integer userId);
 
     Integer deleteFiles(long id);
 }

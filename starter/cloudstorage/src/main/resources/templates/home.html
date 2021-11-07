@@ -58,7 +58,7 @@
                         <tr th:each="file: ${files}">
                             <td>
                                 <a class="btn btn-success" target="_blank">View</a>
-                                <a class="btn btn-danger" th:href="@{/file/delete/}+${file.fileId}">Delete</a>
+                                <a class="btn btn-danger" th:href="@{/home/}+${file.fileId}">Delete</a>
                             </td>
                             <th scope="row" th:text="${file.fileName}">Display Files</th>
                         </tr>
@@ -85,9 +85,7 @@
                         <tr th:each="note: ${notes}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
-                                <form action="#" method="post">
                                 <a class="btn btn-danger" th:href="@{/home/notes/}+${note.noteId}">Delete</a>
-                                </form>
                             </td>
                             <th scope="row" th:text="${note.noteTitle}">Note Title</th>
                             <td th:text="${note.noteDescription}">Note Description</td>

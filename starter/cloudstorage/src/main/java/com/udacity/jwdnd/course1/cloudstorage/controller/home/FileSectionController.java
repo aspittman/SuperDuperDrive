@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller.home;
 
+import com.udacity.jwdnd.course1.cloudstorage.model.Files;
 import com.udacity.jwdnd.course1.cloudstorage.services.home.files.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class FileSectionController {
 
     @GetMapping("/home")
     public String listUploadedFiles(Model model) {
-        model.addAttribute("files", fileService.displayFileList());
+        model.addAttribute("files", fileService.displayFileList(32));
         return "home";
     }
 
@@ -31,16 +32,17 @@ public class FileSectionController {
     public String handleFileUpload(@RequestParam("fileUpload") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
-        fileService.insertFiles(file);
+        fileService.insertFiles(file, 29);
         redirectAttributes.addFlashAttribute("dialog",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
         return "redirect:/home";
     }
 
-    @DeleteMapping("/home")
+    @DeleteMapping("/home/{id}")
     public String deleteUploadedFiles(@PathVariable("id") String id, Model model) {
             model.addAttribute("deleteFiles", fileService.deleteFiles(Integer.parseInt(id)));
-        return "redirect:/home";
+
+        return "home";
     }
 }

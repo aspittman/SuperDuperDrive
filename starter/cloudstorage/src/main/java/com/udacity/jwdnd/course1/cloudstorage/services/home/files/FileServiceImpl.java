@@ -22,17 +22,17 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<Files> displayFileList() {
-        return fileMapper.findAll();
+    public List<Files> displayFileList(Integer userId) {
+        return fileMapper.findByUserId(userId);
     }
 
     @Override
-    public void getUserId() {
-        userMapper.findById(1);
+    public Integer getUserId(Integer userId) {
+        return userId;
     }
 
     @Override
-    public Integer insertFiles(MultipartFile file) {
+    public Integer insertFiles(MultipartFile file, Integer userId) {
 
         try {
             if (file.isEmpty()) {
@@ -43,7 +43,7 @@ public class FileServiceImpl implements FileService {
             long fileSize = file.getSize();
             byte[] fileData = file.getBytes();
 
-            Files files = new Files(null, fileName, fileContentType, fileSize, 32, fileData);
+            Files files = new Files(null, fileName, fileContentType, fileSize, userId, fileData);
             return fileMapper.insertFileData(files);
 
         } catch (IOException e) {

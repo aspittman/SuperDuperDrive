@@ -36,7 +36,7 @@ public class CredentialSectionController {
         return "redirect:/home/credentials";
     }
 
-    @DeleteMapping("/home/credentials")
+    @DeleteMapping("/home/credentials/{id}")
     public String deleteUserCredentials(@PathVariable("id") String id, Model model) {
         model.addAttribute("credentials", credentialService.deleteCredentials(Integer.parseInt(id)));
         return "home";
