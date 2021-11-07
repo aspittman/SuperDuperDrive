@@ -4,6 +4,7 @@ import com.udacity.jwdnd.course1.cloudstorage.model.Files;
 import com.udacity.jwdnd.course1.cloudstorage.services.home.files.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,16 +24,18 @@ public class FileSectionController {
     }
 
     @GetMapping("/home")
-    public String listUploadedFiles(Model model) {
-        model.addAttribute("files", fileService.displayFileList(32));
+    public String listUploadedFiles(Model model, Authentication auth) {
+        String identifyUser = auth.getPrincipal().toString();
+        model.addAttribute("files", fileService.displayFileList(userService.getUserId(identifyUser)));
+
         return "home";
     }
 
     @PostMapping("/home")
-    public String handleFileUpload(@RequestParam("fileUpload") MultipartFile file,
+    public String handleFileUpload(@RequestParam("fileUpload") MultipartFile file, Authentication auth,
                                    RedirectAttributes redirectAttributes) {
-
-        fileService.insertFiles(file, 29);
+        String identifyUser = auth.getPrincipal().toString();
+        fileService.insertFiles(file, userService.getUserId(identifyUser));
         redirectAttributes.addFlashAttribute("dialog",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 

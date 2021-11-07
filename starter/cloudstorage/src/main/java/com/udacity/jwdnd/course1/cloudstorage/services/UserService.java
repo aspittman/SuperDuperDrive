@@ -10,6 +10,8 @@ public interface UserService {
 
     Boolean isUsernameAvailable(String username);
 
+    Integer getUserId(String username);
+
     Integer insertUserSignupData(Users users);
 
     Integer deleteUserSignupData(long id);

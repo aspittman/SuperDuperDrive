@@ -31,6 +31,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Integer getUserId(String username) {
+        return userMapper.getUserId(username);
+    }
+
+    @Override
     public Integer insertUserSignupData(Users users) {
 
         SecureRandom random = new SecureRandom();
