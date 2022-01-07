@@ -1,4 +1,4 @@
-package com.udacity.jwdnd.course1.cloudstorage.controller.home;
+package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Credentials;
 import com.udacity.jwdnd.course1.cloudstorage.model.Files;
@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class FileSectionController {
+public class HomeController {
 
     private final UserService userService;
     private final FileService fileService;
@@ -24,7 +24,7 @@ public class FileSectionController {
     private final CredentialService credentialService;
 
     @Autowired
-    public FileSectionController(UserService userService, FileService fileService, NoteService noteService, CredentialService credentialService) {
+    public HomeController(UserService userService, FileService fileService, NoteService noteService, CredentialService credentialService) {
         this.fileService = fileService;
         this.userService = userService;
         this.noteService = noteService;
@@ -46,11 +46,13 @@ public class FileSectionController {
                                    @ModelAttribute(value = "url") Credentials credentials,
                                    Authentication auth, RedirectAttributes redirectAttributes) {
 
-            String identifyUser = auth.getPrincipal().toString();
-//            fileService.insertFiles(files, userService.getUserId(identifyUser));
-//            redirectAttributes.addFlashAttribute("dialog",
-//                    "You successfully uploaded " + files.getOriginalFilename() + "!");
+        String identifyUser = auth.getPrincipal().toString();
 
+        if(files != null) {
+            fileService.insertFiles(files, userService.getUserId(identifyUser));
+            redirectAttributes.addFlashAttribute("dialog",
+                    "You successfully uploaded " + files.getOriginalFilename() + "!");
+        } else {
             noteService.insertNotes(notes, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully created " + notes.getNoteTitle() + "!");
@@ -58,7 +60,7 @@ public class FileSectionController {
             credentialService.insertCredentials(credentials, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully saved " + credentials.getUsername() + "'s credentials!");
-
+        }
         return "redirect:/home";
     }
 
