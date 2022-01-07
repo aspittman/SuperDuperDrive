@@ -9,7 +9,7 @@ public interface CredentialService {
 
     List<Credentials> displayCredentialsList();
 
-    void insertCredentials(Credentials credentials);
+    void insertCredentials(Credentials credentials, Integer userId);
 
     Integer deleteCredentials(long id);
 }

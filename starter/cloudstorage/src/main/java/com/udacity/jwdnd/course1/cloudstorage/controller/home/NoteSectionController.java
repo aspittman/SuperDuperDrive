@@ -25,15 +25,15 @@ public class NoteSectionController {
         return "home";
     }
 
-    @PostMapping("/home/notes")
-    public String uploadCreatedNotes(@ModelAttribute("notes") Notes notes, Model model,
-                                     Authentication auth, RedirectAttributes redirectAttributes) {
-        noteService.insertNotes(notes);
-        model.addAttribute("notes", notes);
-        redirectAttributes.addFlashAttribute("dialog",
-                "You successfully created " + notes.getNoteTitle() + "!");
-        return "redirect:/home/notes";
-    }
+//    @PostMapping("/home/notes")
+//    public String uploadCreatedNotes(@ModelAttribute("notes") Notes notes, Model model,
+//                                     Authentication auth, RedirectAttributes redirectAttributes) {
+//        noteService.insertNotes(notes, userService.getUserId(identifyUser));
+//        model.addAttribute("notes", notes);
+//        redirectAttributes.addFlashAttribute("dialog",
+//                "You successfully created " + notes.getNoteTitle() + "!");
+//        return "redirect:/home/notes";
+//    }
 
     @GetMapping("/home/notes/{id}")
     public String deleteUserNotes(@PathVariable("id") String id, Model model) {

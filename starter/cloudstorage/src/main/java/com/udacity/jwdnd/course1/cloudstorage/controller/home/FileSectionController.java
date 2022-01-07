@@ -41,38 +41,33 @@ public class FileSectionController {
     }
 
     @PostMapping("/home")
-    public String handleFileUpload(@RequestParam("fileUpload") MultipartFile file, @ModelAttribute("notes") Notes notes,
-                                   @ModelAttribute("credentials") Credentials credentials, Model model, Authentication auth,
-                                   RedirectAttributes redirectAttributes) {
+    public String handleFileUpload(@RequestParam(value = "fileUpload", required = false) MultipartFile files,
+                                   @ModelAttribute(value = "note-title") Notes notes,
+                                   @ModelAttribute(value = "url") Credentials credentials,
+                                   Authentication auth, RedirectAttributes redirectAttributes) {
 
-        if(file.getOriginalFilename() != null) {
             String identifyUser = auth.getPrincipal().toString();
-            fileService.insertFiles(file, userService.getUserId(identifyUser));
-            redirectAttributes.addFlashAttribute("dialog",
-                    "You successfully uploaded " + file.getOriginalFilename() + "!");
-        }
+//            fileService.insertFiles(files, userService.getUserId(identifyUser));
+//            redirectAttributes.addFlashAttribute("dialog",
+//                    "You successfully uploaded " + files.getOriginalFilename() + "!");
 
-        if(notes.getNoteTitle() != null) {
-            noteService.insertNotes(notes);
-            model.addAttribute("notes", notes);
+            noteService.insertNotes(notes, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully created " + notes.getNoteTitle() + "!");
-        }
 
-        if(credentials.getUsername() != null) {
-            credentialService.insertCredentials(credentials);
-            model.addAttribute("credentials", credentials);
+            credentialService.insertCredentials(credentials, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully saved " + credentials.getUsername() + "'s credentials!");
-        }
 
         return "redirect:/home";
     }
 
-    @DeleteMapping("/home/{id}")
-    public String deleteUploadedFiles(@PathVariable("id") String id, Model model) {
-            model.addAttribute("deleteFiles", fileService.deleteFiles(Integer.parseInt(id)));
-
-        return "home";
+    @DeleteMapping("/home")
+    public String deleteUploadedFiles(@RequestParam("files") Files files, @ModelAttribute("notes") Notes notes,
+                                      @ModelAttribute("credentials") Credentials credentials, Model model) {
+        model.addAttribute("deleteFiles", fileService.deleteFiles(files.getFileId()));
+        model.addAttribute("deleteNotes", noteService.deleteNotes(notes.getNoteId()));
+        model.addAttribute("credentials", credentialService.deleteCredentials(credentials.getCredentialId()));
+        return "redirect:/home";
     }
 }

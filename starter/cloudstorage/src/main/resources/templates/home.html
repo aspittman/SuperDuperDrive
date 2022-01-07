@@ -12,7 +12,7 @@
 <div class="container">
     <div id="logoutDiv">
         <form th:action="@{/logout}" method="POST">
-            <button class="btn btn-secondary float-right" type="submit">Logout</button>
+            <button class="btn btn-secondary float-right" id="logout-button" type="submit">Logout</button>
         </form>
     </div>
     <div>
@@ -31,7 +31,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div aria-labelledby="nav-files-tab" class="tab-pane fade show active" id="nav-files" role="tabpanel">
-                <form action="/home" enctype="multipart/form-data" method="POST">
+                <form enctype="multipart/form-data" method="POST">
                     <div class="container">
                         <div class="row" style="margin: 1em;">
                             <div class="col-sm-2">
@@ -41,7 +41,7 @@
                                 <input class="form-control-file" id="fileUpload" name="fileUpload" type="file">
                             </div>
                             <div class="col-sm-4">
-                                <button class="btn btn-dark" type="submit">Upload</button>
+                                <button class="btn btn-dark" id="fileSubmit" type="submit">Upload</button>
                             </div>
                         </div>
                     </div>
@@ -57,17 +57,17 @@
                         <tbody>
                         <tr th:each="file: ${files}">
                             <td>
-                                <a class="btn btn-success" target="_blank">View</a>
-                                <a class="btn btn-danger" th:href="@{/home/}+${file.fileId}">Delete</a>
+                                <a class="btn btn-success" id="view-file" target="_blank">View</a>
+                                <a class="btn btn-danger" id="delete-file">Delete</a>
                             </td>
-                            <th scope="row" th:text="${file.fileName}">Display Files</th>
+                            <th scope="row" th:text="${file.fileName}" id="list-of-files">Display Files</th>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div aria-labelledby="nav-notes-tab" class="tab-pane fade" id="nav-notes" role="tabpanel">
-                <button class="btn btn-info float-right" onclick="showNoteModal()" style="margin: 0.25em;"
+                <button class="btn btn-info float-right" onclick="showNoteModal()" id="add-note-button" style="margin: 0.25em;"
                         type="button">
                     + Add a New Note
                 </button>
@@ -85,7 +85,7 @@
                         <tr th:each="note: ${notes}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
-                                <a class="btn btn-danger" th:href="@{/home/notes/}+${note.noteId}">Delete</a>
+                                <a class="btn btn-danger">Delete</a>
                             </td>
                             <th scope="row" th:text="${note.noteTitle}">Note Title</th>
                             <td th:text="${note.noteDescription}">Note Description</td>
@@ -105,7 +105,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="POST">
+                                <form method="POST">
                                     <input id="note-id" name="noteId" type="hidden">
                                     <div class="form-group">
                                         <label class="col-form-label" for="note-title">Title</label>
@@ -121,8 +121,9 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
-                                <button class="btn btn-primary" onclick="$('#noteSubmit').click();" type="button">Save
+                                <button class="btn btn-secondary" data-dismiss="modal" id="note-close" type="button">Close</button>
+                                <button class="btn btn-primary" onclick="$('#noteSubmit').click();" id="noteSave"
+                                        type="button">Save
                                     changes
                                 </button>
                             </div>
@@ -131,7 +132,7 @@
                 </div>
             </div>
             <div aria-labelledby="nav-credentials-tab" class="tab-pane fade" id="nav-credentials" role="tabpanel">
-                <button class="btn btn-info float-right" onclick="showCredentialModal()" style="margin: 0.25em;"
+                <button class="btn btn-info float-right" onclick="showCredentialModal()" id="add-credential" style="margin: 0.25em;"
                         type="button">
                     + Add a New Credential
                 </button>
@@ -150,7 +151,7 @@
                         <tr th:each="credential: ${credentials}">
                             <td>
                                 <button class="btn btn-success" type="button">Edit</button>
-                                <a class="btn btn-danger" th:href="@{/credentials/delete/}+${credential.credentialId}">Delete</a>
+                                <a class="btn btn-danger">Delete</a>
                             </td>
                             <th scope="row" th:text="${credential.url}">Example Credential URL</th>
                             <td th:text="${credential.username}">Example Credential Username</td>
@@ -171,7 +172,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="credentials" method="POST">
+                                <form method="POST">
                                     <input id="credential-id" name="credentialId" type="hidden">
                                     <div class="form-group">
                                         <label class="col-form-label" for="note-title">URL</label>
@@ -192,8 +193,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
-                                <button class="btn btn-primary" onclick="$('#credentialSubmit').click();" type="button">
+                                <button class="btn btn-secondary" data-dismiss="modal" id="credential-close" type="button">Close</button>
+                                <button class="btn btn-primary" onclick="$('#credentialSubmit').click();" id="credential-save" type="button">
                                     Save changes
                                 </button>
                             </div>

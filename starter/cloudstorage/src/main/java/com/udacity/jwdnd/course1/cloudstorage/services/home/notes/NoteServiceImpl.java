@@ -25,7 +25,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void insertNotes(Notes notes) {
+    public void insertNotes(Notes notes, Integer userId) {
 
         String noteTitle = notes.getNoteTitle();
         String noteDescription = notes.getNoteDescription();

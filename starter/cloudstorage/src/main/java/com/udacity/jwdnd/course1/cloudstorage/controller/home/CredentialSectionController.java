@@ -27,15 +27,15 @@ public class CredentialSectionController {
         return "home";
     }
 
-    @PostMapping("/home/credentials")
-    public String uploadUserCredentials(@ModelAttribute("credentials") Credentials credentials, Model model,
-                                        Authentication auth, RedirectAttributes redirectAttributes) {
-        credentialService.insertCredentials(credentials);
-        model.addAttribute("credentials", credentials);
-        redirectAttributes.addFlashAttribute("dialog",
-                "You successfully saved " + credentials.getUsername() + "'s credentials!");
-        return "redirect:/home/credentials";
-    }
+//    @PostMapping("/home/credentials")
+//    public String uploadUserCredentials(@ModelAttribute("credentials") Credentials credentials, Model model,
+//                                        Authentication auth, RedirectAttributes redirectAttributes) {
+//        credentialService.insertCredentials(credentials);
+//        model.addAttribute("credentials", credentials);
+//        redirectAttributes.addFlashAttribute("dialog",
+//                "You successfully saved " + credentials.getUsername() + "'s credentials!");
+//        return "redirect:/home/credentials";
+//    }
 
     @DeleteMapping("/home/credentials/{id}")
     public String deleteUserCredentials(@PathVariable("id") String id, Model model) {

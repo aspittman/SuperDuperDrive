@@ -24,7 +24,7 @@ public class CredentialServiceImpl implements CredentialService {
     }
 
     @Override
-    public void insertCredentials(Credentials credentials) {
+    public void insertCredentials(Credentials credentials, Integer userId) {
         String credentialsUrl = credentials.getUrl();
         String credentialsUsername = credentials.getUsername();
         String credentialsKey = credentials.getKey();

@@ -9,7 +9,7 @@ public interface NoteService {
 
     List<Notes> displayNotesList();
 
-    void insertNotes(Notes notes);
+    void insertNotes(Notes notes, Integer userId);
 
     Integer deleteNotes(long id);
 }
