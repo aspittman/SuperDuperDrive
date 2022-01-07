@@ -7,11 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.web.servlet.MockMvc;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -19,9 +17,6 @@ public class LoginTests {
 
     @LocalServerPort
     private int port;
-
-    @Autowired
-    private MockMvc mvc;
 
     private WebDriver driver;
 
@@ -36,7 +31,7 @@ public class LoginTests {
     }
 
     @Test
-    public void unsecuredPagesFunctionalityTest() {
+    public void unsecuredPagesAccessibilityTest() {
         driver.get("http://localhost:" + this.port + "/login");
         Assertions.assertEquals("Login", driver.getTitle());
 
@@ -52,20 +47,38 @@ public class LoginTests {
         secondActionProvider.click(backToLogin).build().perform();
     }
 
-
-
     @Test
-    public void securedPagesFunctionalityTest() throws Exception {
+    public void incorrectLoginTest() throws Exception {
         driver.get("http://localhost:" + this.port + "/login");
         Assertions.assertEquals("Login", driver.getTitle());
 
         WebElement username = driver.findElement(By.id("inputUsername"));
         WebElement password = driver.findElement(By.id("inputPassword"));
-        username.sendKeys("user");
-        password.sendKeys("password");
+        username.sendKeys("kjsda");
+        password.sendKeys("iifdb");
 
         WebElement searchBtn = driver.findElement(By.id("login-button"));
         searchBtn.click();
+
+        Assertions.assertEquals("http://localhost:" + this.port + "/login?error", driver.getCurrentUrl());
+        Assertions.assertEquals("Login", driver.getTitle());
+    }
+
+    @Test
+    public void correctLoginTest() throws Exception {
+        driver.get("http://localhost:" + this.port + "/login");
+        Assertions.assertEquals("Login", driver.getTitle());
+
+        WebElement username = driver.findElement(By.id("inputUsername"));
+        WebElement password = driver.findElement(By.id("inputPassword"));
+        username.sendKeys("first");
+        password.sendKeys("second");
+
+        WebElement searchBtn = driver.findElement(By.id("login-button"));
+        searchBtn.click();
+
+        Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
+        Assertions.assertEquals("Home", driver.getTitle());
     }
 
     @AfterEach

@@ -19,9 +19,6 @@ public class SignUpTests {
     @LocalServerPort
     private int port;
 
-    @Autowired
-    private UserService userService;
-
     private WebDriver driver;
 
     @BeforeAll

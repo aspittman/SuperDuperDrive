@@ -5,18 +5,16 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.web.servlet.MockMvc;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HomeControllerTests {
+public class HomeControllerListTests {
 
     @LocalServerPort
     private int port;
@@ -48,12 +46,13 @@ public class HomeControllerTests {
         driver.get("http://localhost:" + this.port + "/home");
         Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
 
-        WebElement filesTab = driver.findElement(By.id("nav-files-tab"));
-        filesTab.click();
-        WebElement browse = driver.findElement(By.id("fileUpload"));
-        browse.sendKeys("/home/razorx1/Documents/testnote");
-        WebElement selectFile = driver.findElement(By.id("fileSubmit"));
-        selectFile.click();
+        WebElement filesList = driver.findElement(By.id("fileTable"));
+        Assertions.assertTrue(filesList.isDisplayed());
+        WebElement viewFile = driver.findElement(By.id("view-file"));
+        viewFile.click();
+        WebElement deleteFile = driver.findElement(By.id("delete-file"));
+        deleteFile.click();
+
         Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
         Assertions.assertEquals("Home", driver.getTitle());
 
@@ -68,20 +67,11 @@ public class HomeControllerTests {
 
         WebElement notesTab = driver.findElement(By.id("nav-notes-tab"));
         notesTab.click();
-        WebElement addNotes = driver.findElement(By.id("add-note-button"));
-        addNotes.click();
 
-        WebElement closeSelection = driver.findElement(By.id("note-close"));
-        closeSelection.click();
-
-        WebElement noteTitle = driver.findElement(By.id("note-title"));
-        WebElement noteDescription = driver.findElement(By.id("note-description"));
-        noteTitle.sendKeys("Test");
-        noteDescription.sendKeys("Test Description");
-        WebElement noteSelect = driver.findElement(By.id("noteSave"));
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.visibilityOf(noteSelect));
-        noteSelect.click();
+        WebElement editNote = driver.findElement(By.id("edit-note"));
+        editNote.click();
+        WebElement deleteNote = driver.findElement(By.id("delete-note"));
+        deleteNote.click();
 
         Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
         Assertions.assertEquals("Home", driver.getTitle());
@@ -99,21 +89,11 @@ public class HomeControllerTests {
 
         WebElement credentialsTab = driver.findElement(By.id("nav-credentials-tab"));
         credentialsTab.click();
-        WebElement addCredentials = driver.findElement(By.id("add-credential"));
-        addCredentials.click();
-        WebElement closeSelection = driver.findElement(By.id("credential-close"));
-        closeSelection.click();
 
-        WebElement url = driver.findElement(By.id("credential-url"));
-        WebElement username = driver.findElement(By.id("credential-username"));
-        WebElement password = driver.findElement(By.id("credential-password"));
-        url.sendKeys("http://localhost:" + this.port + "/test");
-        username.sendKeys("Dan");
-        password.sendKeys("Smith");
-        WebElement credentialSave = driver.findElement(By.id("credential-save"));
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.visibilityOf(credentialSave));
-        credentialSave.click();
+        WebElement editNote = driver.findElement(By.id("edit-credential"));
+        editNote.click();
+        WebElement deleteNote = driver.findElement(By.id("delete-credential"));
+        deleteNote.click();
 
         Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
         Assertions.assertEquals("Home", driver.getTitle());
