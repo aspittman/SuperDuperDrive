@@ -30,7 +30,7 @@ public class NoteServiceImpl implements NoteService {
         String noteTitle = notes.getNoteTitle();
         String noteDescription = notes.getNoteDescription();
 
-        Notes notesModel = new Notes(null, noteTitle, noteDescription, 32);
+        Notes notesModel = new Notes(null, noteTitle, noteDescription, userId);
         noteMapper.insertNoteData(notesModel);
     }
 

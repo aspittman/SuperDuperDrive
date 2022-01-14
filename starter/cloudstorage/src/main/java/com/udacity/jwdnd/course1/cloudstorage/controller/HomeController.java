@@ -65,11 +65,24 @@ public class HomeController {
     }
 
     @DeleteMapping("/home")
-    public String deleteUploadedFiles(@RequestParam("files") Files files, @ModelAttribute("notes") Notes notes,
-                                      @ModelAttribute("credentials") Credentials credentials, Model model) {
-        model.addAttribute("deleteFiles", fileService.deleteFiles(files.getFileId()));
-        model.addAttribute("deleteNotes", noteService.deleteNotes(notes.getNoteId()));
-        model.addAttribute("credentials", credentialService.deleteCredentials(credentials.getCredentialId()));
+    public String deleteUploadedFiles(@RequestParam(value = "fileUpload", required = false) Files files,
+                                      @ModelAttribute(value = "note-title") Notes notes, @ModelAttribute(value = "url") Credentials credentials,
+                                      Model model, Authentication auth, RedirectAttributes redirectAttributes) {
+
+        String identifyUser = auth.getPrincipal().toString();
+
+        model.addAttribute("files", fileService.deleteFiles(userService.getUserId(identifyUser)));
+        redirectAttributes.addFlashAttribute("dialog",
+                "You successfully deleted " + files.getFileName() + "!");
+
+        model.addAttribute("notes", noteService.deleteNotes(userService.getUserId(identifyUser)));
+        redirectAttributes.addFlashAttribute("dialog",
+                "You successfully deleted " + notes.getNoteTitle() + "!");
+
+        model.addAttribute("credentials", credentialService.deleteCredentials(userService.getUserId(identifyUser)));
+        redirectAttributes.addFlashAttribute("dialog",
+                "You successfully deleted " + credentials.getUsername() + "!");
+
         return "redirect:/home";
     }
 }
