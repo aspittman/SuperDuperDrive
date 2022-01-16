@@ -70,14 +70,22 @@ public class HomeControllerListTests {
 
         WebElement editNote = driver.findElement(By.id("edit-note"));
         editNote.click();
+
+        WebElement closeEditNote = driver.findElement(By.id("note-close"));
+        WebDriverWait windowWait = new WebDriverWait(driver, 5);
+        windowWait.until(ExpectedConditions.visibilityOf(closeEditNote));
+        closeEditNote.click();
+
         WebElement deleteNote = driver.findElement(By.id("delete-note"));
+        WebDriverWait deleteWait = new WebDriverWait(driver, 5);
+        deleteWait.until(ExpectedConditions.visibilityOf(deleteNote));
         deleteNote.click();
 
         Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
         Assertions.assertEquals("Home", driver.getTitle());
 
         WebElement logout = driver.findElement(By.id("logout-button"));
-        WebDriverWait logoutWait = new WebDriverWait(driver, 20);
+        WebDriverWait logoutWait = new WebDriverWait(driver, 5);
         logoutWait.until(ExpectedConditions.visibilityOf(logout));
         logout.click();
     }
@@ -90,16 +98,24 @@ public class HomeControllerListTests {
         WebElement credentialsTab = driver.findElement(By.id("nav-credentials-tab"));
         credentialsTab.click();
 
-        WebElement editNote = driver.findElement(By.id("edit-credential"));
-        editNote.click();
-        WebElement deleteNote = driver.findElement(By.id("delete-credential"));
-        deleteNote.click();
+        WebElement editCredential = driver.findElement(By.id("edit-credential"));
+        editCredential.click();
+
+        WebElement closeEditCredential = driver.findElement(By.id("credential-close"));
+        WebDriverWait windowWait = new WebDriverWait(driver, 5);
+        windowWait.until(ExpectedConditions.visibilityOf(closeEditCredential));
+        closeEditCredential.click();
+
+        WebElement deleteCredential = driver.findElement(By.id("delete-credential"));
+        WebDriverWait deleteWait = new WebDriverWait(driver, 5);
+        deleteWait.until(ExpectedConditions.visibilityOf(deleteCredential));
+        deleteCredential.click();
 
         Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
         Assertions.assertEquals("Home", driver.getTitle());
 
         WebElement logout = driver.findElement(By.id("logout-button"));
-        WebDriverWait logoutWait = new WebDriverWait(driver, 20);
+        WebDriverWait logoutWait = new WebDriverWait(driver, 5);
         logoutWait.until(ExpectedConditions.visibilityOf(logout));
         logout.click();
     }

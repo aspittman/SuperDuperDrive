@@ -64,16 +64,16 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @DeleteMapping("/home")
-    public String deleteUploadedFiles(@RequestParam(value = "fileUpload", required = false) Files files,
+    @GetMapping("/home/{fileId}")
+    public String deleteUploadedFiles(@PathVariable(name = "fileId") long fileId,
                                       @ModelAttribute(value = "note-title") Notes notes, @ModelAttribute(value = "url") Credentials credentials,
                                       Model model, Authentication auth, RedirectAttributes redirectAttributes) {
 
         String identifyUser = auth.getPrincipal().toString();
 
-        model.addAttribute("files", fileService.deleteFiles(userService.getUserId(identifyUser)));
-        redirectAttributes.addFlashAttribute("dialog",
-                "You successfully deleted " + files.getFileName() + "!");
+        fileService.deleteFiles(fileId);
+//        redirectAttributes.addFlashAttribute("dialog",
+//                "You successfully deleted " + fileId.getFileName() + "!");
 
         model.addAttribute("notes", noteService.deleteNotes(userService.getUserId(identifyUser)));
         redirectAttributes.addFlashAttribute("dialog",
