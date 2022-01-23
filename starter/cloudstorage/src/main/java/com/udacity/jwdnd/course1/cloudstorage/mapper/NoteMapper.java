@@ -15,12 +15,12 @@ public interface NoteMapper {
     List<String> findDesc();
 
     @Select("SELECT * from NOTES WHERE userid=#{userId}")
-    List<Notes> findById(long id);
+    List<Notes> findByUserId(long id);
 
     @Insert("INSERT into NOTES(notetitle,notedescription,userid) VALUES(#{noteTitle},#{noteDescription},#{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "noteId")
     Integer insertNoteData(Notes notes);
 
-    @Delete("DELETE from NOTES WHERE userid=#{userId}")
-    Integer deleteById(long id);
+    @Delete("DELETE from NOTES WHERE noteid=#{noteId}")
+    Integer deleteById(Integer id);
 }

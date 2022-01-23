@@ -20,8 +20,8 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public List<Notes> displayNotesList() {
-        return noteMapper.findAll();
+    public List<Notes> displayNotesList(Integer userId) {
+        return noteMapper.findByUserId(userId);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public Integer deleteNotes(long id) {
+    public Integer deleteNotes(Integer id) {
         return noteMapper.deleteById(id);
     }
 }

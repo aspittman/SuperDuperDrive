@@ -15,5 +15,5 @@ public interface FileService {
 
     Integer insertFiles(MultipartFile file, Integer userId);
 
-    Integer deleteFiles(long id);
+    Integer deleteFiles(Integer id);
 }

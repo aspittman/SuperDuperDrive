@@ -24,6 +24,6 @@ public interface FileMapper {
     Integer insertFileData(Files files);
 
     @Delete("DELETE from FILES WHERE fileid=#{fileId}")
-    Integer deleteById(long id);
+    Integer deleteById(Integer id);
 
 }

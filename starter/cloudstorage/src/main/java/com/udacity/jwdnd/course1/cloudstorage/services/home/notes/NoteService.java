@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface NoteService {
 
-    List<Notes> displayNotesList();
+    List<Notes> displayNotesList(Integer userId);
 
     void insertNotes(Notes notes, Integer userId);
 
-    Integer deleteNotes(long id);
+    Integer deleteNotes(Integer id);
 }

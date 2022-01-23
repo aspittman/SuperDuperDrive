@@ -35,8 +35,8 @@ public class HomeController {
     public String listUploadedFiles(Model model, Authentication auth) {
         String identifyUser = auth.getPrincipal().toString();
         model.addAttribute("files", fileService.displayFileList(userService.getUserId(identifyUser)));
-        model.addAttribute("notes", noteService.displayNotesList());
-        model.addAttribute("credentials", credentialService.displayCredentialsList());
+        model.addAttribute("notes", noteService.displayNotesList(userService.getUserId(identifyUser)));
+        model.addAttribute("credentials", credentialService.displayCredentialsList(userService.getUserId(identifyUser)));
         return "home";
     }
 
@@ -48,7 +48,7 @@ public class HomeController {
 
         String identifyUser = auth.getPrincipal().toString();
 
-        if(files != null) {
+        if (files != null) {
             fileService.insertFiles(files, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully uploaded " + files.getOriginalFilename() + "!");
@@ -64,25 +64,24 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @GetMapping("/home/{fileId}")
-    public String deleteUploadedFiles(@PathVariable(name = "fileId") long fileId,
-                                      @ModelAttribute(value = "note-title") Notes notes, @ModelAttribute(value = "url") Credentials credentials,
-                                      Model model, Authentication auth, RedirectAttributes redirectAttributes) {
+    @GetMapping(value = {"/home/{fileId}", "/home/{noteId}", "/home/{credentialId}"})
+    public String deleteUploadedFiles(@PathVariable(required = false, name = "fileId") Integer fileId,
+                                      @PathVariable(required = false, name = "noteId") Integer noteId,
+                                      @PathVariable(required = false, name = "credentialId") Integer credentialId,
+                                      RedirectAttributes redirectAttributes) {
 
-        String identifyUser = auth.getPrincipal().toString();
-
-        fileService.deleteFiles(fileId);
-//        redirectAttributes.addFlashAttribute("dialog",
-//                "You successfully deleted " + fileId.getFileName() + "!");
-
-        model.addAttribute("notes", noteService.deleteNotes(userService.getUserId(identifyUser)));
-        redirectAttributes.addFlashAttribute("dialog",
-                "You successfully deleted " + notes.getNoteTitle() + "!");
-
-        model.addAttribute("credentials", credentialService.deleteCredentials(userService.getUserId(identifyUser)));
-        redirectAttributes.addFlashAttribute("dialog",
-                "You successfully deleted " + credentials.getUsername() + "!");
-
+        if (fileId != null) {
+            fileService.deleteFiles(fileId);
+            redirectAttributes.addFlashAttribute("dialog", "File successfully deleted");
+        }
+        if (noteId != null) {
+            noteService.deleteNotes(noteId);
+            redirectAttributes.addFlashAttribute("dialog", "Note successfully deleted");
+        }
+        if (credentialId != null) {
+            credentialService.deleteCredentials(credentialId);
+            redirectAttributes.addFlashAttribute("dialog", "Credential successfully deleted");
+        }
         return "redirect:/home";
     }
 }

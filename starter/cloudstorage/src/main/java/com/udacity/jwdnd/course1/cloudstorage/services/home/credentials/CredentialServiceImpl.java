@@ -19,8 +19,8 @@ public class CredentialServiceImpl implements CredentialService {
     }
 
     @Override
-    public List<Credentials> displayCredentialsList() {
-        return credentialMapper.findAll();
+    public List<Credentials> displayCredentialsList(Integer userId) {
+        return credentialMapper.findByUserId(userId);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CredentialServiceImpl implements CredentialService {
     }
 
     @Override
-    public Integer deleteCredentials(long id) {
+    public Integer deleteCredentials(Integer id) {
         return credentialMapper.deleteById(id);
     }
 }

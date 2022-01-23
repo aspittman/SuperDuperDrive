@@ -12,12 +12,12 @@ public interface CredentialMapper {
     List<Credentials> findAll();
 
     @Select("SELECT * from CREDENTIALS WHERE userid=#{userId}")
-    Credentials findById(long id);
+    List<Credentials> findByUserId(long id);
 
     @Insert("INSERT into CREDENTIALS(url,username,key,password,userid) VALUES(#{url},#{username},#{key},#{password},#{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "credentialId")
     Integer insertCredentialData(Credentials credentials);
 
-    @Delete("DELETE from CREDENTIALS WHERE userid=#{userId}")
-    Integer deleteById(long id);
+    @Delete("DELETE from CREDENTIALS WHERE credentialid=#{credentialId}")
+    Integer deleteById(Integer id);
 }

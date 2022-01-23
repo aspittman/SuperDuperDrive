@@ -28,7 +28,7 @@ public class ServiceTests {
     public void userCRUDTests() {
      //   note and credential service currently not working
      //   fileService.deleteFiles(80);
-        noteService.deleteNotes(95);
-        credentialService.deleteCredentials(60);
+        noteService.deleteNotes(96);
+        credentialService.deleteCredentials(61);
     }
 }
