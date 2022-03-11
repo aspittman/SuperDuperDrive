@@ -57,8 +57,8 @@
                         <tbody>
                         <tr th:each="file: ${files}">
                             <td>
-                                <a th:href="@{'/home/' + 'file/' + ${file.fileId}}" class="btn btn-success" id="view-file" target="_blank">View</a>
-                                <a th:href="@{'/home/' + ${file.fileId}}" class="btn btn-danger" id="delete-file">Delete</a>
+                                <a th:href="@{'/home/' + 'view/' + ${file.fileId}}" class="btn btn-success" id="view-file" target="_blank">View</a>
+                                <a th:href="@{'/home/' + 'file/' + ${file.fileId}}" class="btn btn-danger" id="delete-file">Delete</a>
                             </td>
                             <th scope="row" th:text="${file.fileName}" id="list-of-files">Display Files</th>
                         </tr>
@@ -86,7 +86,7 @@
                         <tr th:each="note: ${notes}">
                             <td>
                                 <a class="btn btn-success" id="edit-note" onclick="showNoteModal()" type="button">Edit</a>
-                                <a th:href="@{'/home/' + ${note.noteId}}" class="btn btn-danger" id="delete-note" type="button">Delete</a>
+                                <a th:href="@{'/home/' + 'note/' + ${note.noteId}}" class="btn btn-danger" id="delete-note" type="button">Delete</a>
                             </td>
                             <th scope="row" th:text="${note.noteTitle}">Note Title</th>
                             <td th:text="${note.noteDescription}">Note Description</td>
@@ -152,7 +152,7 @@
                         <tr th:each="credential: ${credentials}">
                             <td>
                                 <a class="btn btn-success" id="edit-credential" onclick="showCredentialModal()" type="button">Edit</a>
-                                <a th:href="@{'/home/' + ${credential.credentialId}}" class="btn btn-danger" id="delete-credential">Delete</a>
+                                <a th:href="@{'/home/' + 'credential/' +${credential.credentialId}}" class="btn btn-danger" id="delete-credential">Delete</a>
                             </td>
                             <th scope="row" th:text="${credential.url}">Example Credential URL</th>
                             <td th:text="${credential.username}">Example Credential Username</td>

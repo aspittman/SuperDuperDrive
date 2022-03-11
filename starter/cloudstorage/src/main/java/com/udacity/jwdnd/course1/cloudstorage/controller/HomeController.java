@@ -67,7 +67,7 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @GetMapping("/home/{fileName}/{fileId}")
+    @GetMapping("/home/view/{fileId}")
     @ResponseBody
     public ResponseEntity<byte[]> displayFile(@PathVariable(required = false, name ="fileId") Integer fileId) {
 
@@ -78,24 +78,33 @@ public class HomeController {
                 .body(selectedFile.getFileData());
     }
 
-    @GetMapping(value = {"/home/{fileId}", "/home/{noteId}", "/home/{credentialId}"})
-    public String deleteUploadedFiles(@PathVariable(required = false, name = "fileId") Integer fileId,
-                                      @PathVariable(required = false, name = "noteId") Integer noteId,
-                                      @PathVariable(required = false, name = "credentialId") Integer credentialId,
+    @GetMapping("/home/file/{fileId}")
+    public String deleteFiles(@PathVariable(required = false, name = "fileId") Integer fileId,
                                       RedirectAttributes redirectAttributes) {
 
-        if (fileId != null) {
             fileService.deleteFiles(fileId);
             redirectAttributes.addFlashAttribute("dialog", "File successfully deleted");
-        }
-        if (noteId != null) {
-            noteService.deleteNotes(noteId);
-            redirectAttributes.addFlashAttribute("dialog", "Note successfully deleted");
-        }
-        if (credentialId != null) {
-            credentialService.deleteCredentials(credentialId);
-            redirectAttributes.addFlashAttribute("dialog", "Credential successfully deleted");
-        }
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home/note/{noteId}")
+    public String deleteNotes(@PathVariable(required = false, name = "noteId") Integer noteId,
+                                      RedirectAttributes redirectAttributes) {
+
+        noteService.deleteNotes(noteId);
+        redirectAttributes.addFlashAttribute("dialog", "Note successfully deleted");
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home/credential/{credentialId}")
+    public String deleteCredentials(@PathVariable(required = false, name = "credentialId") Integer credentialId,
+                                      RedirectAttributes redirectAttributes) {
+
+        credentialService.deleteCredentials(credentialId);
+        redirectAttributes.addFlashAttribute("dialog", "Credential successfully deleted");
+
         return "redirect:/home";
     }
 }

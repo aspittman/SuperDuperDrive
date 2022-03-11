@@ -51,7 +51,7 @@ public class HomeControllerTests {
         WebElement filesTab = driver.findElement(By.id("nav-files-tab"));
         filesTab.click();
         WebElement browse = driver.findElement(By.id("fileUpload"));
-        browse.sendKeys("/home/razorx1/Documents/testnote");
+        browse.sendKeys("/home/razorx1/Documents/testnote2");
         WebElement selectFile = driver.findElement(By.id("fileSubmit"));
         selectFile.click();
         Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
