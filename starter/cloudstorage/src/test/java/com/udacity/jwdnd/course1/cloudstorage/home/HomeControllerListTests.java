@@ -50,14 +50,14 @@ public class HomeControllerListTests {
         Assertions.assertTrue(filesList.isDisplayed());
         WebElement viewFile = driver.findElement(By.id("view-file"));
         viewFile.click();
-        WebElement deleteFile = driver.findElement(By.id("delete-file"));
-        deleteFile.click();
+//        WebElement deleteFile = driver.findElement(By.id("delete-file"));
+//        deleteFile.click();
 
      //   Assertions.assertEquals("http://localhost:" + this.port + "/home", driver.getCurrentUrl());
-        Assertions.assertEquals("Home", driver.getTitle());
-
-        WebElement logout = driver.findElement(By.id("logout-button"));
-        logout.click();
+//        Assertions.assertEquals("Home", driver.getTitle());
+//
+//        WebElement logout = driver.findElement(By.id("logout-button"));
+//        logout.click();
     }
 
     @Test
@@ -120,10 +120,10 @@ public class HomeControllerListTests {
         logout.click();
     }
 
-    @AfterEach
-    public void afterEach() {
-        if (this.driver != null) {
-            driver.quit();
-        }
-    }
+//    @AfterEach
+//    public void afterEach() {
+//        if (this.driver != null) {
+//            driver.quit();
+//        }
+//    }
 }

@@ -2,6 +2,9 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Credentials;
 import com.udacity.jwdnd.course1.cloudstorage.model.Files;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
 import com.udacity.jwdnd.course1.cloudstorage.model.Notes;
 import com.udacity.jwdnd.course1.cloudstorage.services.home.credentials.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.home.files.FileService;
@@ -62,6 +65,17 @@ public class HomeController {
                     "You successfully saved " + credentials.getUsername() + "'s credentials!");
         }
         return "redirect:/home";
+    }
+
+    @GetMapping("/home/{fileName}/{fileId}")
+    @ResponseBody
+    public ResponseEntity<byte[]> displayFile(@PathVariable(required = false, name ="fileId") Integer fileId) {
+
+        Files selectedFile = fileService.getFileById(fileId);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
+                .body(selectedFile.getFileData());
     }
 
     @GetMapping(value = {"/home/{fileId}", "/home/{noteId}", "/home/{credentialId}"})

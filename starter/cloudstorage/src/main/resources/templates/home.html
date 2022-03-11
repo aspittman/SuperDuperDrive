@@ -47,7 +47,6 @@
                     </div>
                 </form>
                 <div class="table-responsive">
-                    <form>
                     <table class="table table-striped" id="fileTable">
                         <thead>
                         <tr>
@@ -58,7 +57,7 @@
                         <tbody>
                         <tr th:each="file: ${files}">
                             <td>
-                                <a class="btn btn-success" id="view-file" target="_blank">View</a>
+                                <a th:href="@{'/home/' + 'file/' + ${file.fileId}}" class="btn btn-success" id="view-file" target="_blank">View</a>
                                 <a th:href="@{'/home/' + ${file.fileId}}" class="btn btn-danger" id="delete-file">Delete</a>
                             </td>
                             <th scope="row" th:text="${file.fileName}" id="list-of-files">Display Files</th>
@@ -66,7 +65,6 @@
 
                         </tbody>
                     </table>
-                    </form>
                 </div>
             </div>
             <div aria-labelledby="nav-notes-tab" class="tab-pane fade" id="nav-notes" role="tabpanel">

@@ -2,12 +2,18 @@ package com.udacity.jwdnd.course1.cloudstorage.services.home.files;
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Files;
 
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -16,6 +22,7 @@ public class FileServiceImpl implements FileService {
     private final UserMapper userMapper;
     private final FileMapper fileMapper;
 
+    @Autowired
     public FileServiceImpl(UserMapper userMapper, FileMapper fileMapper) {
         this.userMapper = userMapper;
         this.fileMapper = fileMapper;
@@ -24,6 +31,11 @@ public class FileServiceImpl implements FileService {
     @Override
     public List<Files> displayFileList(Integer userId) {
         return fileMapper.findByUserId(userId);
+    }
+
+    @Override
+    public Files getFileById(Integer fileId) {
+        return fileMapper.findFileById(fileId);
     }
 
     @Override
