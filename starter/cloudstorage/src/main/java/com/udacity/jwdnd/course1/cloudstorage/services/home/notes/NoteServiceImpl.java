@@ -25,6 +25,11 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
+    public Notes findNote(Integer userId) {
+        return noteMapper.findNote(userId);
+    }
+
+    @Override
     public void insertNotes(Notes notes, Integer userId) {
 
         String noteTitle = notes.getNoteTitle();
@@ -32,6 +37,11 @@ public class NoteServiceImpl implements NoteService {
 
         Notes notesModel = new Notes(null, noteTitle, noteDescription, userId);
         noteMapper.insertNoteData(notesModel);
+    }
+
+    @Override
+    public Integer updateNotes(Notes notes) {
+        return noteMapper.updateNoteData(notes);
     }
 
     @Override

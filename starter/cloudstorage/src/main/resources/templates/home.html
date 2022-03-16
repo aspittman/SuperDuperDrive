@@ -85,7 +85,7 @@
                         <tbody>
                         <tr th:each="note: ${notes}">
                             <td>
-                                <a class="btn btn-success" id="edit-note" onclick="showNoteModal()" type="button">Edit</a>
+                                <button type="button" class="btn btn-success" onclick="showNoteModal()">Edit</button>
                                 <a th:href="@{'/home/' + 'note/' + ${note.noteId}}" class="btn btn-danger" id="delete-note" type="button">Delete</a>
                             </td>
                             <th scope="row" th:text="${note.noteTitle}">Note Title</th>
@@ -151,7 +151,7 @@
                         <tbody>
                         <tr th:each="credential: ${credentials}">
                             <td>
-                                <a class="btn btn-success" id="edit-credential" onclick="showCredentialModal()" type="button">Edit</a>
+                                <button type="button" class="btn btn-success" onclick="showCredentialModal()">Edit</button>
                                 <a th:href="@{'/home/' + 'credential/' +${credential.credentialId}}" class="btn btn-danger" id="delete-credential">Delete</a>
                             </td>
                             <th scope="row" th:text="${credential.url}">Example Credential URL</th>
@@ -176,17 +176,17 @@
                                 <form action="#" method="POST">
                                     <input id="credential-id" name="credentialId" type="hidden">
                                     <div class="form-group">
-                                        <label class="col-form-label" for="note-title">URL</label>
+                                        <label class="col-form-label" for="credential-url">URL</label>
                                         <input class="form-control" id="credential-url" maxlength="100" name="url"
                                                required type="text">
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-form-label" for="note-title">Username</label>
+                                        <label class="col-form-label" for="credential-username">Username</label>
                                         <input class="form-control" id="credential-username" maxlength="30" name="username"
                                                required type="text">
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-form-label" for="note-title">Password</label>
+                                        <label class="col-form-label" for="credential-password">Password</label>
                                         <input class="form-control" id="credential-password" maxlength="30" name="password"
                                                required type="text">
                                     </div>
