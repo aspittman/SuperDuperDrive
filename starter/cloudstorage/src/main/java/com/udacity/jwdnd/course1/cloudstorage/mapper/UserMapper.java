@@ -21,7 +21,6 @@ public interface UserMapper {
     Users findById(long id);
 
     @Insert("INSERT into USERS(username,salt,password,firstname,lastname) VALUES(#{username},#{salt},#{password},#{firstName},#{lastName})")
-    @Options(useGeneratedKeys = true, keyProperty = "userId")
     Integer insertUserData(Users users);
 
     @Delete("DELETE from USERS WHERE userid=#{userId}")

@@ -47,7 +47,7 @@ public class HomeController {
     public String handleDriveUploads(@RequestParam(value = "fileUpload", required = false) MultipartFile files,
                                    @ModelAttribute(value = "note-title") Notes notes,
                                      @ModelAttribute(value = "note") Notes secondNotes,
-                                   @ModelAttribute(value = "url") Credentials credentials,
+                                   @ModelAttribute(value = "credential-url") Credentials credentials,
                                      @ModelAttribute(value = "credential") Credentials secondCredentials,
                                    Authentication auth, RedirectAttributes redirectAttributes) {
 
@@ -57,15 +57,16 @@ public class HomeController {
             fileService.insertFiles(files, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully uploaded " + files.getOriginalFilename() + "!");
-        } else if (notes != null) {
+        } else if (notes.getNoteTitle() != null) {
             noteService.insertNotes(notes, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully created " + notes.getNoteTitle() + "!");
-        } else if (credentials != null) {
+        } else if (credentials.getUrl() != null) {
             credentialService.insertCredentials(credentials, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully saved " + credentials.getUsername() + "'s credentials!");
         } else {
+
             if (noteService.findNote(secondNotes.getNoteId()) != null) {
                 noteService.updateNotes(secondNotes);
                 redirectAttributes.addFlashAttribute("dialog",
@@ -75,6 +76,7 @@ public class HomeController {
                 redirectAttributes.addFlashAttribute("dialog",
                     secondCredentials.getUsername() + " successfully updated!");
         }
+
         return "redirect:/home";
     }
 

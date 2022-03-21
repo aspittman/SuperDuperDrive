@@ -20,7 +20,6 @@ public interface FileMapper {
     List<Files> findByUserId(long id);
 
     @Insert("INSERT into FILES(filename,contenttype,filesize,userid,filedata) VALUES(#{fileName},#{contentType},#{fileSize},#{userId},#{fileData})")
-    @Options(useGeneratedKeys = true, keyProperty = "fileId")
     Integer insertFileData(Files files);
 
     @Delete("DELETE from FILES WHERE fileid=#{fileId}")

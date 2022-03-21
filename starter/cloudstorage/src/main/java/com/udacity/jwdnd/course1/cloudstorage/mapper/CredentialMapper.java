@@ -19,7 +19,6 @@ public interface CredentialMapper {
     Credentials findCredential(long id);
 
     @Insert("INSERT into CREDENTIALS(url,username,key,password,userid) VALUES(#{url},#{username},#{key},#{password},#{userId})")
-    @Options(useGeneratedKeys = true, keyProperty = "credentialId")
     Integer insertCredentialData(Credentials credentials);
 
     @Update("UPDATE CREDENTIALS SET url = #{url},username= #{username},key = #{key},password = #{password},userid = #{userid} WHERE credentialid=#{credentialId}")
