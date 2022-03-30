@@ -3,6 +3,8 @@ package com.udacity.jwdnd.course1.cloudstorage;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
+import com.udacity.jwdnd.course1.cloudstorage.services.home.credentials.CredentialService;
+import com.udacity.jwdnd.course1.cloudstorage.services.home.notes.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,19 +22,20 @@ public class CloudStorageApplication implements CommandLineRunner {
 	private UserMapper userMapper;
 
 	@Autowired
-	private NoteMapper noteMapper;
+	private NoteService noteService;
 
 	@Autowired
-	private FileMapper fileMapper;
+	private CredentialService credentialService;
 
 	@Override
 	public void run(String... args) throws Exception {
 
 //		logger.info("Insert into database this -> {}", userMapper.insertOne(new Users(1, "random", "name")));
 //		logger.info("Insert into database this -> {}", userMapper.insertTwo(new Users(2, "sanders", "bleh")));
-//
-//		logger.info("Show from database this -> {}", userMapper.findById(1));
-//		logger.info("Show from database this -> {}", userMapper.findById(2));
+
+		logger.info("Show from database this -> {}", noteService.findNote(132));
+//		logger.info("Show from database this -> {}", credentialService.findCredential(93));
+
 
 //		logger.info("Insert into database this -> {}", userMapper.insertOne(new Users(3, "rty", "ytre")));
 //		logger.info("Insert into database this -> {}", userMapper.insertTwo(new Users(4, "xcvb", "nbvc")));

@@ -17,10 +17,11 @@ public interface NoteMapper {
     @Select("SELECT * from NOTES WHERE userid=#{userId}")
     List<Notes> findByUserId(long id);
 
-    @Select("SELECT * from NOTES WHERE noteid=#{noteId}")
-    Notes findNote(long id);
+    @Select("SELECT NOTEID from NOTES WHERE noteid=#{noteId}")
+    Integer findNote(long id);
 
     @Insert("INSERT into NOTES(notetitle,notedescription,userid) VALUES(#{noteTitle},#{noteDescription},#{userId})")
+    @Options(useGeneratedKeys = true, keyProperty = "noteId")
     Integer insertNoteData(Notes notes);
 
     @Update("UPDATE NOTES SET notetitle = #{noteTitle},notedescription = #{noteDescription},userid = #{userId} WHERE noteid=#{noteId}")

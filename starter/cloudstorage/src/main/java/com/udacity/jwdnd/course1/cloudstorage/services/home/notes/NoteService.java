@@ -9,11 +9,11 @@ public interface NoteService {
 
     List<Notes> displayNotesList(Integer userId);
 
-    Notes findNote(Integer noteId);
+    Integer findNote(Integer noteId);
 
     void insertNotes(Notes notes, Integer userId);
 
-    Integer updateNotes(Notes notes);
+    Integer updateNotes(Notes notes, Integer userId);
 
     Integer deleteNotes(Integer id);
 }

@@ -12,9 +12,9 @@ public interface CredentialService {
 
     void insertCredentials(Credentials credentials, Integer userId);
 
-    Credentials findCredential(Integer credentialId);
+    Integer findCredential(Integer credentialId);
 
-    Integer updateCredentials(Credentials credentials);
+    Integer updateCredentials(Credentials credentials, Integer userId);
 
     Integer deleteCredentials(Integer id);
 }

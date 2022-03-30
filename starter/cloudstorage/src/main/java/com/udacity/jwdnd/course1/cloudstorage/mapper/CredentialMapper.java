@@ -15,8 +15,8 @@ public interface CredentialMapper {
     @Select("SELECT * from CREDENTIALS WHERE userid=#{userId}")
     List<Credentials> findByUserId(long id);
 
-    @Select("SELECT * from NOTES WHERE credentialid=#{credentialId}")
-    Credentials findCredential(long id);
+    @Select("SELECT * from CREDENTIALS WHERE credentialid=#{credentialId}")
+    Integer findCredential(long id);
 
     @Insert("INSERT into CREDENTIALS(url,username,key,password,userid) VALUES(#{url},#{username},#{key},#{password},#{userId})")
     Integer insertCredentialData(Credentials credentials);

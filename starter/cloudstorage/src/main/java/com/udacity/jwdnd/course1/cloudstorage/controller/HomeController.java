@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Objects;
+
 @Controller
 public class HomeController {
 
@@ -52,31 +54,30 @@ public class HomeController {
                                    Authentication auth, RedirectAttributes redirectAttributes) {
 
         String identifyUser = auth.getPrincipal().toString();
+//        Integer noteCheck = noteService.findNote(11);
+//        Integer credentialCheck = credentialService.findCredential(11);
 
         if (files != null) {
             fileService.insertFiles(files, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully uploaded " + files.getOriginalFilename() + "!");
-        } else if (notes.getNoteTitle() != null) {
+        } else if (secondNotes.getNoteDescription() != null) {
             noteService.insertNotes(notes, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully created " + notes.getNoteTitle() + "!");
-        } else if (credentials.getUrl() != null) {
+//        } else if () {
+//            noteService.updateNotes(secondNotes, userService.getUserId(identifyUser));
+//            redirectAttributes.addFlashAttribute("dialog",
+//                    secondNotes.getNoteTitle() + " successfully updated!");
+        } else if (secondCredentials.getUsername() != null) {
             credentialService.insertCredentials(credentials, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully saved " + credentials.getUsername() + "'s credentials!");
-        } else {
-
-            if (noteService.findNote(secondNotes.getNoteId()) != null) {
-                noteService.updateNotes(secondNotes);
-                redirectAttributes.addFlashAttribute("dialog",
-                        secondNotes.getNoteTitle() + " successfully updated!");
-            } else if (credentialService.findCredential(secondCredentials.getCredentialId()) != null)
-                credentialService.updateCredentials(secondCredentials);
-                redirectAttributes.addFlashAttribute("dialog",
-                    secondCredentials.getUsername() + " successfully updated!");
-        }
-
+//        } else if (Objects.equals(credentials.getCredentialId(), credentialCheck)) {
+//            credentialService.updateCredentials(secondCredentials, userService.getUserId(identifyUser));
+//            redirectAttributes.addFlashAttribute("dialog",
+//                    secondCredentials.getUsername() + " successfully updated!");
+    }
         return "redirect:/home";
     }
 

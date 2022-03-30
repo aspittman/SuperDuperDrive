@@ -36,13 +36,20 @@ public class CredentialServiceImpl implements CredentialService {
     }
 
     @Override
-    public Credentials findCredential(Integer credentialId) {
+    public Integer findCredential(Integer credentialId) {
         return credentialMapper.findCredential(credentialId);
     }
 
     @Override
-    public Integer updateCredentials(Credentials credentials) {
-        return credentialMapper.updateCredentialData(credentials);
+    public Integer updateCredentials(Credentials credentials, Integer userId) {
+        String credentialsUrl = credentials.getUrl();
+        String credentialsUsername = credentials.getUsername();
+        String credentialsKey = credentials.getKey();
+        String credentialsPassword= credentials.getPassword();
+
+        Credentials credentialsModel = new Credentials(null, credentialsUrl, credentialsUsername, credentialsKey,
+                credentialsPassword, userId);
+        return credentialMapper.updateCredentialData(credentialsModel);
     }
 
     @Override
