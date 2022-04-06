@@ -48,35 +48,23 @@ public class HomeController {
     @PostMapping("/home")
     public String handleDriveUploads(@RequestParam(value = "fileUpload", required = false) MultipartFile files,
                                    @ModelAttribute(value = "note-title") Notes notes,
-                                     @ModelAttribute(value = "note") Notes secondNotes,
                                    @ModelAttribute(value = "credential-url") Credentials credentials,
-                                     @ModelAttribute(value = "credential") Credentials secondCredentials,
                                    Authentication auth, RedirectAttributes redirectAttributes) {
 
         String identifyUser = auth.getPrincipal().toString();
-//        Integer noteCheck = noteService.findNote(11);
-//        Integer credentialCheck = credentialService.findCredential(11);
 
         if (files != null) {
             fileService.insertFiles(files, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully uploaded " + files.getOriginalFilename() + "!");
-        } else if (secondNotes.getNoteDescription() != null) {
+        } else if (notes.getNoteDescription() != null) {
             noteService.insertNotes(notes, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully created " + notes.getNoteTitle() + "!");
-//        } else if () {
-//            noteService.updateNotes(secondNotes, userService.getUserId(identifyUser));
-//            redirectAttributes.addFlashAttribute("dialog",
-//                    secondNotes.getNoteTitle() + " successfully updated!");
-        } else if (secondCredentials.getUsername() != null) {
+        } else if (credentials.getUsername() != null) {
             credentialService.insertCredentials(credentials, userService.getUserId(identifyUser));
             redirectAttributes.addFlashAttribute("dialog",
                     "You successfully saved " + credentials.getUsername() + "'s credentials!");
-//        } else if (Objects.equals(credentials.getCredentialId(), credentialCheck)) {
-//            credentialService.updateCredentials(secondCredentials, userService.getUserId(identifyUser));
-//            redirectAttributes.addFlashAttribute("dialog",
-//                    secondCredentials.getUsername() + " successfully updated!");
     }
         return "redirect:/home";
     }
