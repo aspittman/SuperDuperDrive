@@ -85,7 +85,7 @@
                         <tbody>
                         <tr th:each="note: ${notes}">
                             <td>
-                                <button type="button" class="btn btn-success" onclick="showNoteModal()">Edit</button>
+                                <button type="button" class="btn btn-success" onclick="showNoteModal()" id="edit-note">Edit</button>
                                 <a th:href="@{'/home/' + 'note/' + ${note.noteId}}" class="btn btn-danger" id="delete-note" type="button">Delete</a>
                             </td>
                             <th scope="row" th:text="${note.noteTitle}">Note Title</th>
@@ -151,7 +151,7 @@
                         <tbody>
                         <tr th:each="credential: ${credentials}">
                             <td>
-                                <button type="button" class="btn btn-success" onclick="showCredentialModal()">Edit</button>
+                                <button type="button" class="btn btn-success" onclick="showCredentialModal()" id="edit-credential">Edit</button>
                                 <a th:href="@{'/home/' + 'credential/' +${credential.credentialId}}" class="btn btn-danger" id="delete-credential">Delete</a>
                             </td>
                             <th scope="row" th:text="${credential.url}">Example Credential URL</th>
